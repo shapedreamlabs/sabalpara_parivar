@@ -1,0 +1,129 @@
+name: sabalpara_family
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+    # -------------------------- Internationalization -------------------------- #
+  flutter_localizations:
+    sdk: flutter
+
+  # -------------------------- Dart Methods -------------------------- #
+  intl: ^0.20.2
+
+  # -------------------------- State Management -------------------------- #
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+
+  # -------------------------- Responsiveness -------------------------- #
+  flutter_screenutil: ^5.9.3
+
+  # -------------------------- Local storage -------------------------- #
+  shared_preferences: ^2.5.4
+  cached_network_image: ^3.4.1
+
+  # -------------------------- UI -------------------------- #
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.2.3
+  shimmer: ^3.0.0
+  oktoast: ^3.4.0
+  flutter_native_splash: ^2.4.6
+  pinput: ^6.0.1
+  carousel_slider: ^5.1.1
+  dotted_border: ^3.1.0
+  dynamic_height_grid_view: ^0.0.4
+
+  # -------------------------- API Calling -------------------------- #
+  dio: ^5.9.2
+
+  #_______________________ Media Specific _______________________
+  image_picker: ^1.2.1
+  path_provider: ^2.1.5
+  open_file: ^3.5.11
+  file_picker: ^10.3.10
+  flutter_image_compress: ^2.4.0
+
+  # -------------------------- Redirection -------------------------- #
+  url_launcher: ^6.3.2
+
+  # -------------------------- Internet Connection Checker -------------------------- #
+  internet_connection_checker_plus: ^3.0.0
+  google_sign_in: ^7.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  generate: true
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/temp/
+
+  fonts:
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish/Mulish-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Mulish/Mulish-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Mulish/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish/Mulish-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish/Mulish-ExtraBold.ttf
+          weight: 800
+
+flutter_native_splash:
+  color: "#8349E5"
+  fullscreen: true
+  image: assets/images/splash_logo.png
+  android_12:
+    color: "#8349E5"
+    fullscreen: true
+    image: assets/images/splash_logo_android12.png

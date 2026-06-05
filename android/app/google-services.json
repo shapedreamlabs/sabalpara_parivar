@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "948967808443",
+    "project_id": "sabalpara-fultter",
+    "storage_bucket": "sabalpara-fultter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948967808443:android:f52265777feda5923df89e",
+        "android_client_info": {
+          "package_name": "com.parivar.sabalpara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmHF_MLR6D5_gE0p0uJlppitg4zXnnPCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

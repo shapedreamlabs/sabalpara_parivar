@@ -28,7 +28,7 @@ class VillagesListScreen extends StatelessWidget {
               itemCount: state.villageList.length,
               separatorBuilder: (context, index) => 12.h.spaceVertical,
               itemBuilder: (context, index) {
-                final villageData = state?.villageList[index];
+                final villageData = state.villageList[index];
                 return VillagesDetailsWidget(villageData: villageData);
               },
             ),

@@ -8,7 +8,7 @@ class VillagesListState extends Equatable {
   });
 
   final bool loader;
-  final String villageName;
+  final String? villageName;
   final List<VillagesModel> villageList;
 
   VillagesListState copyWith({

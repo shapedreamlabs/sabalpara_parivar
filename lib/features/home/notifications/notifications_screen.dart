@@ -108,10 +108,20 @@ class CommonNotificationCardWidget extends StatelessWidget {
                       ),
                     ),
 
-                    Text("5 days ago", style: styleW500S12.copyWith(color: AppColors.text.withValues(alpha: 0.6))),
+                    Text(
+                      "5 days ago",
+                      style: styleW500S12.copyWith(
+                        color: AppColors.text.withValues(alpha: 0.6),
+                      ),
+                    ),
                   ],
                 ),
-                Text(notificationData.message ?? "", style: styleW500S12.copyWith(color: AppColors.text.withValues(alpha: 0.8))),
+                Text(
+                  notificationData.message ?? "",
+                  style: styleW500S12.copyWith(
+                    color: AppColors.text.withValues(alpha: 0.8),
+                  ),
+                ),
               ],
             ),
           ),

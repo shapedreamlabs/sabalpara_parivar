@@ -62,8 +62,8 @@ class CommitteeScreen extends StatelessWidget {
                                   10.w.spaceHorizontal,
                               itemBuilder: (context, index) {
                                 final type = state.typeList[index];
-                                final isSelected =
-                                    state.selectedTypeList.contains(type);
+                                final isSelected = state.selectedTypeList
+                                    .contains(type);
                                 return CommitteePositionWidget(
                                   onTap: () {
                                     cubit.toggleTypeSelection(type);

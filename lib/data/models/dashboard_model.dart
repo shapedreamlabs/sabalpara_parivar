@@ -13,26 +13,26 @@ class DashboardModel {
   });
 
   factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
-        banners: (json["banners"] as List<dynamic>? ?? const [])
-            .whereType<Map<String, dynamic>>()
-            .map(BannerModel.fromJson)
-            .toList(),
-        communityOverview: CommunityOverviewModel.fromJson(
-          json["community_overview"] is Map<String, dynamic>
-              ? json["community_overview"]
-              : const <String, dynamic>{},
-        ),
-        results: (json["results"] as List<dynamic>? ?? const [])
-            .whereType<Map<String, dynamic>>()
-            .map(ResultsModel.fromJson)
-            .toList(),
-      );
+    banners: (json["banners"] as List<dynamic>? ?? const [])
+        .whereType<Map<String, dynamic>>()
+        .map(BannerModel.fromJson)
+        .toList(),
+    communityOverview: CommunityOverviewModel.fromJson(
+      json["community_overview"] is Map<String, dynamic>
+          ? json["community_overview"]
+          : const <String, dynamic>{},
+    ),
+    results: (json["results"] as List<dynamic>? ?? const [])
+        .whereType<Map<String, dynamic>>()
+        .map(ResultsModel.fromJson)
+        .toList(),
+  );
 
   Map<String, dynamic> toJson() => {
-        "banners": banners.map((e) => e.toJson()).toList(),
-        "community_overview": communityOverview.toJson(),
-        "results": results.map((e) => e.toJson()).toList(),
-      };
+    "banners": banners.map((e) => e.toJson()).toList(),
+    "community_overview": communityOverview.toJson(),
+    "results": results.map((e) => e.toJson()).toList(),
+  };
 }
 
 class CommunityOverviewModel {
@@ -65,9 +65,9 @@ class CommunityOverviewModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "total_family": totalFamily,
-        "total_members": totalMembers,
-        "total_businesses": totalBusinesses,
-        "total_villages": totalVillages,
-      };
+    "total_family": totalFamily,
+    "total_members": totalMembers,
+    "total_businesses": totalBusinesses,
+    "total_villages": totalVillages,
+  };
 }

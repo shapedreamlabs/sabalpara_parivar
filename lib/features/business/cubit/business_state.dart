@@ -25,9 +25,5 @@ class BusinessState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        loader,
-        workTypesList,
-        filteredWorkTypesList,
-      ];
+  List<Object?> get props => [loader, workTypesList, filteredWorkTypesList];
 }

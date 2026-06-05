@@ -22,33 +22,32 @@ class VillageModel {
     int? status,
     String? createdAt,
     String? updatedAt,
-  }) =>
-      VillageModel(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        slug: slug ?? this.slug,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-      );
+  }) => VillageModel(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    slug: slug ?? this.slug,
+    status: status ?? this.status,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
 
   factory VillageModel.fromJson(Map<String, dynamic> json) => VillageModel(
-        id: json["id"] is int ? json["id"] : int.tryParse("${json["id"]}"),
-        name: json["name"]?.toString(),
-        slug: json["slug"]?.toString(),
-        status: json["status"] is int
-            ? json["status"]
-            : int.tryParse("${json["status"]}"),
-        createdAt: json["created_at"]?.toString(),
-        updatedAt: json["updated_at"]?.toString(),
-      );
+    id: json["id"] is int ? json["id"] : int.tryParse("${json["id"]}"),
+    name: json["name"]?.toString(),
+    slug: json["slug"]?.toString(),
+    status: json["status"] is int
+        ? json["status"]
+        : int.tryParse("${json["status"]}"),
+    createdAt: json["created_at"]?.toString(),
+    updatedAt: json["updated_at"]?.toString(),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "slug": slug,
-        "status": status,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "name": name,
+    "slug": slug,
+    "status": status,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

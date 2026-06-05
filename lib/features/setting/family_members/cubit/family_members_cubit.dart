@@ -59,13 +59,11 @@ class FamilyMembersCubit extends Cubit<FamilyMembersState> {
 
     if (result != null) {
       final updatedMember = result as FamilyMembersModel;
-      final updatedList = List<FamilyMembersModel>.from(state.familyMembersList);
-      updatedList[index] = updatedMember;
-      refresh(
-        state.copyWith(
-          familyMembersList: updatedList,
-        ),
+      final updatedList = List<FamilyMembersModel>.from(
+        state.familyMembersList,
       );
+      updatedList[index] = updatedMember;
+      refresh(state.copyWith(familyMembersList: updatedList));
     }
   }
 

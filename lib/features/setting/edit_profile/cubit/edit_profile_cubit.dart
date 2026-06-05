@@ -37,7 +37,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     ageController.text = userModel?.age ?? "";
   }
 
-
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
@@ -63,8 +62,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     refresh(
       state.copyWith(
         selectedOccupation: value,
-        selectedStandard:
-            value == FamilyMemberOccupation.study ? state.selectedStandard : null,
+        selectedStandard: value == FamilyMemberOccupation.study
+            ? state.selectedStandard
+            : null,
         selectedWorkType: isJobOrBusiness ? state.selectedWorkType : null,
         selectedRole: isJobOrBusiness ? state.selectedRole : null,
       ),
@@ -158,10 +158,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     final selected = _findVillageById(villageId);
     if (selected != null) {
       refresh(
-        state.copyWith(
-          selectedVillage: selected,
-          selectedVillageId: villageId,
-        ),
+        state.copyWith(selectedVillage: selected, selectedVillageId: villageId),
       );
     }
     _pendingVillageId = null;
@@ -170,19 +167,14 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   void onChangeCity(String? value) {
     final city = state.cityList.firstWhereOrNull((e) => e.name == value);
     refresh(
-      state.copyWith(
-        selectedCity: value,
-        selectedCityId: city?.id?.toString(),
-      ),
+      state.copyWith(selectedCity: value, selectedCityId: city?.id?.toString()),
     );
   }
 
   Future<void> _loadWorkTypes() async {
     try {
       final response = await BusinessRepo.workTypes();
-      refresh(
-        state.copyWith(workTypeList: response.data ?? <WorkTypeModel>[]),
-      );
+      refresh(state.copyWith(workTypeList: response.data ?? <WorkTypeModel>[]));
       _applyPendingWorkTypeSelection();
     } catch (e) {
       ErrorHandler.handle(e);
@@ -192,9 +184,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   Future<void> _loadVillages() async {
     try {
       final response = await VillagesRepo.villages();
-      refresh(
-        state.copyWith(villageList: response.data ?? <VillageModel>[]),
-      );
+      refresh(state.copyWith(villageList: response.data ?? <VillageModel>[]));
       _applyPendingVillageSelection();
     } catch (e) {
       ErrorHandler.handle(e);
@@ -204,9 +194,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   Future<void> _loadStandards() async {
     try {
       final response = await DashboardRepo.standards();
-      refresh(
-        state.copyWith(standardList: response.data ?? <StandardModel>[]),
-      );
+      refresh(state.copyWith(standardList: response.data ?? <StandardModel>[]));
       _applyPendingStandardSelection();
     } catch (e) {
       ErrorHandler.handle(e);
@@ -286,7 +274,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       _applyPendingVillageSelection();
       _applyPendingWorkTypeSelection();
 
-      await PrefService.set(PrefKeys.userData, userModelToJson(profile.toUserModel()));
+      await PrefService.set(
+        PrefKeys.userData,
+        userModelToJson(profile.toUserModel()),
+      );
       if ((profile.accessToken ?? '').isNotEmpty) {
         await PrefService.set(PrefKeys.token, profile.accessToken);
       }
@@ -345,13 +336,13 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     }
 
     if ((state.selectedOccupation == .job ||
-        state.selectedOccupation == .business) &&
+            state.selectedOccupation == .business) &&
         state.selectedRole == null) {
       roleError = context.l10n?.roleIsRequired ?? "";
     }
 
     if ((state.selectedOccupation == .job ||
-        state.selectedOccupation == .business) &&
+            state.selectedOccupation == .business) &&
         state.selectedWorkType == null) {
       workTypeError = context.l10n?.workTypeIsRequired ?? "";
     }

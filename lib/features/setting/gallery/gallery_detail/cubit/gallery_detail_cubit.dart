@@ -5,11 +5,7 @@ part 'gallery_detail_state.dart';
 
 class GalleryDetailCubit extends Cubit<GalleryDetailState> {
   GalleryDetailCubit(Map<String, dynamic>? arguments)
-      : super(
-          GalleryDetailState(
-            title: arguments?['title']?.toString() ?? '',
-          ),
-        ) {
+    : super(GalleryDetailState(title: arguments?['title']?.toString() ?? '')) {
     final galleryId = arguments?['gallery_id'];
     if (galleryId != null) {
       _galleryId = galleryId.toString();

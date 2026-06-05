@@ -43,15 +43,13 @@ class CommitteeCubit extends Cubit<CommitteeState> {
     }
   }
 
-  List<CommitteeMembersModel> _applyFilters({
-    List<String>? selectedTypes,
-  }) {
+  List<CommitteeMembersModel> _applyFilters({List<String>? selectedTypes}) {
     final query = searchController.text.trim().toLowerCase();
     final activeTypes = selectedTypes ?? state.selectedTypeList;
 
     return _allMembersList.where((member) {
-      final matchesType = activeTypes.isEmpty ||
-          activeTypes.contains(member.type ?? '');
+      final matchesType =
+          activeTypes.isEmpty || activeTypes.contains(member.type ?? '');
 
       if (!matchesType) return false;
 

@@ -4,4 +4,5 @@ class PrefKeys {
   static const token = 'token';
   static const isLoggedIn = 'is_logged_in';
   static const isBoarding = 'is_onboarding';
+  static const fcmToken = 'fcm_Token';
 }

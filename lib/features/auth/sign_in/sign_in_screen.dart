@@ -56,7 +56,10 @@ class SignInScreen extends StatelessWidget {
                             borderRadius: .circular(10.r),
                             onTap: () => cubit.onTapSignUp(context),
                             child: Padding(
-                              padding: .symmetric(vertical: 2.h, horizontal: 5.w),
+                              padding: .symmetric(
+                                vertical: 2.h,
+                                horizontal: 5.w,
+                              ),
                               child: Text(
                                 l10n?.signUp ?? "",
                                 style: styleW700S14,
@@ -161,8 +164,10 @@ class SignInScreen extends StatelessWidget {
                                               color: Colors.transparent,
                                               child: InkWell(
                                                 borderRadius: .circular(10.r),
-                                                onTap: () => cubit
-                                                    .onTapForgetPassword(context),
+                                                onTap: () =>
+                                                    cubit.onTapForgetPassword(
+                                                      context,
+                                                    ),
                                                 child: Padding(
                                                   padding: .symmetric(
                                                     vertical: 2.h,

@@ -34,22 +34,22 @@ class SplashScreen extends StatelessWidget {
       bool isLoggedIn = PrefService.getBool(PrefKeys.isLoggedIn);
 
       if (context.mounted) {
-        if(isLoggedIn) {
+        if (isLoggedIn) {
           context.navigator.pushNamedAndRemoveUntil(
             DashboardScreen.routeName,
-                (p) => false,
+            (p) => false,
           );
         } else {
           if (!isOnboardingDone) {
             PrefService.set(PrefKeys.isBoarding, true);
             context.navigator.pushNamedAndRemoveUntil(
               OnboardingScreen.routeName,
-                  (p) => false,
+              (p) => false,
             );
           } else {
             context.navigator.pushNamedAndRemoveUntil(
               SignInScreen.routeName,
-                  (p) => false,
+              (p) => false,
             );
           }
         }

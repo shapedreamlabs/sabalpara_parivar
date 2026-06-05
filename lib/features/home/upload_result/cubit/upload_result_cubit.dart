@@ -144,14 +144,12 @@ class UploadResultCubit extends Cubit<UploadResultState> {
           id: uploadedResult.id,
           resultIdRaw: uploadedResult.deleteResultId,
           name: uploadedResult.name ?? childNameController.text.trim(),
-          standardId:
-              uploadedResult.standardId ?? state.selectedStandard?.id,
+          standardId: uploadedResult.standardId ?? state.selectedStandard?.id,
           standardName:
               uploadedResult.standardName ?? state.selectedStandard?.name,
           percentage:
               uploadedResult.percentage ?? percentageController.text.trim(),
-          year: uploadedResult.year ??
-              int.tryParse(state.selectedYear ?? ""),
+          year: uploadedResult.year ?? int.tryParse(state.selectedYear ?? ""),
           result: file,
           resultUrl: uploadedResult.resultUrl,
         ),

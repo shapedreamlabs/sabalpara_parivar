@@ -77,16 +77,17 @@ class ResultsWidget extends StatelessWidget {
                     final resultData = results[index];
                     return Container(
                       width: 0.96.sw,
-                      padding: .only(left: index == 0 ? 20.w : 7.w, right: (index == (results.length - 1)) ? 20.w : 7.w),
+                      padding: .only(
+                        left: index == 0 ? 20.w : 7.w,
+                        right: (index == (results.length - 1)) ? 20.w : 7.w,
+                      ),
                       child: CommonResultCardWidget(
                         index: index,
                         heightRestrict: true,
                         showStatus: false,
                         resultData: resultData,
-                        onTapDelete: () => cubit.onTapDeleteResult(
-                          context,
-                          index: index,
-                        ),
+                        onTapDelete: () =>
+                            cubit.onTapDeleteResult(context, index: index),
                       ),
                     );
                   },

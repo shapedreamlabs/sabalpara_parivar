@@ -26,28 +26,25 @@ class CommunityUsersScreen extends StatelessWidget {
             body: state.loader
                 ? const Center(child: AppLoader())
                 : state.usersList.isEmpty
-                    ? Center(
-                        child: Text(
-                          context.l10n?.noDataFound ?? "No data found",
-                          style: styleW400S16.copyWith(
-                            color: AppColors.text.withValues(alpha: 0.6),
-                          ),
-                        ),
-                      )
-                    : CustomListView(
-                        padding: .symmetric(
-                          horizontal: AppConstants.horizontalPadding,
-                        ),
-                        itemCount: state.usersList.length,
-                        separatorBuilder: (context, index) =>
-                            12.h.spaceVertical,
-                        itemBuilder: (context, index) {
-                          final userData = state.usersList[index];
-                          return CommunityUserDetailsWidget(
-                            userData: userData,
-                          );
-                        },
+                ? Center(
+                    child: Text(
+                      context.l10n?.noDataFound ?? "No data found",
+                      style: styleW400S16.copyWith(
+                        color: AppColors.text.withValues(alpha: 0.6),
                       ),
+                    ),
+                  )
+                : CustomListView(
+                    padding: .symmetric(
+                      horizontal: AppConstants.horizontalPadding,
+                    ),
+                    itemCount: state.usersList.length,
+                    separatorBuilder: (context, index) => 12.h.spaceVertical,
+                    itemBuilder: (context, index) {
+                      final userData = state.usersList[index];
+                      return CommunityUserDetailsWidget(userData: userData);
+                    },
+                  ),
           ),
         );
       },

@@ -32,11 +32,5 @@ class GalleryDetailState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        loader,
-        loadingMore,
-        title,
-        imagesList,
-        hasMore,
-      ];
+  List<Object?> get props => [loader, loadingMore, title, imagesList, hasMore];
 }

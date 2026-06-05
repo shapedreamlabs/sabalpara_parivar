@@ -18,24 +18,24 @@ class GalleryModel {
   });
 
   factory GalleryModel.fromJson(Map<String, dynamic> json) => GalleryModel(
-        id: json["id"] is int ? json["id"] : int.tryParse("${json["id"]}"),
-        name: json["name"]?.toString(),
-        slug: json["slug"]?.toString(),
-        thumbnail: json["thumbnail"]?.toString(),
-        status: json["status"] is int
-            ? json["status"]
-            : int.tryParse("${json["status"]}"),
-        createdAt: json["created_at"]?.toString(),
-        updatedAt: json["updated_at"]?.toString(),
-      );
+    id: json["id"] is int ? json["id"] : int.tryParse("${json["id"]}"),
+    name: json["name"]?.toString(),
+    slug: json["slug"]?.toString(),
+    thumbnail: json["thumbnail"]?.toString(),
+    status: json["status"] is int
+        ? json["status"]
+        : int.tryParse("${json["status"]}"),
+    createdAt: json["created_at"]?.toString(),
+    updatedAt: json["updated_at"]?.toString(),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "slug": slug,
-        "thumbnail": thumbnail,
-        "status": status,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "name": name,
+    "slug": slug,
+    "thumbnail": thumbnail,
+    "status": status,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

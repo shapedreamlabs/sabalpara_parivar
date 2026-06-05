@@ -29,9 +29,9 @@ class CommitteeState extends Equatable {
 
   @override
   List<Object?> get props => [
-        loader,
-        typeList,
-        selectedTypeList,
-        committeeMembersList,
-      ];
+    loader,
+    typeList,
+    selectedTypeList,
+    committeeMembersList,
+  ];
 }

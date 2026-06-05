@@ -16,7 +16,8 @@ class GalleryImageModel {
   });
 
   factory GalleryImageModel.fromJson(Map<String, dynamic> json) {
-    final imageUrl = json["image"] ??
+    final imageUrl =
+        json["image"] ??
         json["file"] ??
         json["photo"] ??
         json["thumbnail"] ??
@@ -35,11 +36,11 @@ class GalleryImageModel {
   }
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "gallery_id": galleryId,
-        "image": image,
-        "title": title,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "gallery_id": galleryId,
+    "image": image,
+    "title": title,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

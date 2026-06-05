@@ -147,7 +147,13 @@ class AuthRepo {
     final response = await ApiService.request(
       type: .post,
       path: ApiConstants.register,
-      body: {'email': email, 'phone': phone, 'password': password},
+      body: {
+        'email': email,
+        'phone': phone,
+        'password': password,
+        'device_type': Platform.isIOS ? 2 : 1,
+        'device_token': PrefService.getString(PrefKeys.fcmToken),
+      },
       cancelToken: cancelToken,
     );
 
@@ -186,7 +192,12 @@ class AuthRepo {
     final response = await ApiService.request(
       type: .post,
       path: ApiConstants.login,
-      body: {'email': email, 'password': password},
+      body: {
+        'email': email,
+        'password': password,
+        'device_type': Platform.isIOS ? 2 : 1,
+        'device_token': PrefService.getString(PrefKeys.fcmToken),
+      },
       cancelToken: cancelToken,
     );
 

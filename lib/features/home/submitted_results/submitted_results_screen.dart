@@ -45,8 +45,7 @@ class SubmittedResultsScreen extends StatelessWidget {
               children: [
                 CustomListView(
                   itemCount: state.resultsList.length,
-                  showEmptyWidget:
-                      !state.loader && state.resultsList.isEmpty,
+                  showEmptyWidget: !state.loader && state.resultsList.isEmpty,
                   emptyWidget: Center(
                     child: Text(
                       l10n?.noResultFound ?? "No Result Found!",
@@ -67,10 +66,8 @@ class SubmittedResultsScreen extends StatelessWidget {
                       index: index,
                       resultData: resultData,
                       showStatus: false,
-                      onTapDelete: () => cubit.onTapDeleteResult(
-                        context,
-                        index: index,
-                      ),
+                      onTapDelete: () =>
+                          cubit.onTapDeleteResult(context, index: index),
                     );
                   },
                 ),

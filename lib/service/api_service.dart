@@ -19,9 +19,7 @@ class ApiService {
         connectTimeout: 15.seconds,
         receiveTimeout: 15.seconds,
         sendTimeout: 15.seconds,
-        headers: {
-          "Accept": "application/json",
-        },
+        headers: {"Accept": "application/json"},
       ),
     );
 

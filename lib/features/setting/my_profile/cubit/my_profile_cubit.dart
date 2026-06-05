@@ -21,7 +21,9 @@ class MyProfileCubit extends Cubit<MyProfileState> {
   }
 
   Future<void> onTapEdit(BuildContext context) async {
-    final result = await context.navigator.pushNamed(EditProfileScreen.routeName);
+    final result = await context.navigator.pushNamed(
+      EditProfileScreen.routeName,
+    );
     if (result != null) {
       refresh(state.copyWith(refreshKey: state.refreshKey + 1));
     }

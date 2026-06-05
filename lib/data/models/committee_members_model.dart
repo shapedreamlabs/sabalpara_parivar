@@ -28,17 +28,16 @@ class CommitteeMembersModel {
     String? avatar,
     String? createdAt,
     String? updatedAt,
-  }) =>
-      CommitteeMembersModel(
-        id: id ?? this.id,
-        type: type ?? this.type,
-        name: name ?? this.name,
-        phone: phone ?? this.phone,
-        email: email ?? this.email,
-        avatar: avatar ?? this.avatar,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-      );
+  }) => CommitteeMembersModel(
+    id: id ?? this.id,
+    type: type ?? this.type,
+    name: name ?? this.name,
+    phone: phone ?? this.phone,
+    email: email ?? this.email,
+    avatar: avatar ?? this.avatar,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
 
   factory CommitteeMembersModel.fromJson(Map<String, dynamic> json) =>
       CommitteeMembersModel(
@@ -53,13 +52,13 @@ class CommitteeMembersModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "type": type,
-        "name": name,
-        "phone": phone,
-        "email": email,
-        "avatar": avatar,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-      };
+    "id": id,
+    "type": type,
+    "name": name,
+    "phone": phone,
+    "email": email,
+    "avatar": avatar,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

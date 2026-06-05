@@ -40,16 +40,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle: systemUiStyle ?? .dark,
       leading: backArrow && leading == null
           ? Center(
-            child: CustomIconButton(
-              border: Border.all(
-                color: AppColors.text.withValues(alpha: 0.1),
+              child: CustomIconButton(
+                border: Border.all(
+                  color: AppColors.text.withValues(alpha: 0.1),
+                ),
+                icon: AppAssets.backArrow,
+                size: 24.h,
+                padding: 10.w,
+                onTap: onBackTap ?? context.navigator.pop,
               ),
-              icon: AppAssets.backArrow,
-              size: 24.h,
-              padding: 10.w,
-              onTap: onBackTap ?? context.navigator.pop,
-            ),
-          )
+            )
           : leading,
       leadingWidth: leadingWidth ?? 66.w,
       elevation: 0,

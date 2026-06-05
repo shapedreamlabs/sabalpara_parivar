@@ -115,8 +115,9 @@ class SignUpCubit extends Cubit<SignUpState> {
         return;
       }
 
-      final avatarFile =
-          await GoogleAuthService.downloadAvatarFile(googleUser.photoUrl);
+      final avatarFile = await GoogleAuthService.downloadAvatarFile(
+        googleUser.photoUrl,
+      );
 
       await AuthRepo.socialLogin(
         provider: 'google',

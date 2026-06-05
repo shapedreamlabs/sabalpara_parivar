@@ -60,8 +60,9 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
     refresh(
       state.copyWith(
         selectedOccupation: value,
-        selectedStandard:
-            value == FamilyMemberOccupation.study ? state.selectedStandard : null,
+        selectedStandard: value == FamilyMemberOccupation.study
+            ? state.selectedStandard
+            : null,
         selectedWorkType: isJobOrBusiness ? state.selectedWorkType : null,
         selectedRole: isJobOrBusiness ? state.selectedRole : null,
       ),
@@ -119,9 +120,7 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
   Future<void> _loadStandards() async {
     try {
       final response = await DashboardRepo.standards();
-      refresh(
-        state.copyWith(standardList: response.data ?? <StandardModel>[]),
-      );
+      refresh(state.copyWith(standardList: response.data ?? <StandardModel>[]));
       _applyPendingStandardSelection();
     } catch (e) {
       ErrorHandler.handle(e);
@@ -131,9 +130,7 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
   Future<void> _loadWorkTypes() async {
     try {
       final response = await BusinessRepo.workTypes();
-      refresh(
-        state.copyWith(workTypeList: response.data ?? <WorkTypeModel>[]),
-      );
+      refresh(state.copyWith(workTypeList: response.data ?? <WorkTypeModel>[]));
       _applyPendingWorkTypeSelection();
     } catch (e) {
       ErrorHandler.handle(e);
@@ -236,11 +233,9 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
         relationError.isEmpty;
   }
 
-  String? get _standardId =>
-      state.selectedStandard?.id?.toString();
+  String? get _standardId => state.selectedStandard?.id?.toString();
 
-  String? get _workTypeId =>
-      state.selectedWorkType?.id?.toString();
+  String? get _workTypeId => state.selectedWorkType?.id?.toString();
 
   Future<void> onTapSubmit(BuildContext context) async {
     if (!validation(context)) {
@@ -267,12 +262,14 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
                   : null,
               workTypeId:
                   (state.selectedOccupation == FamilyMemberOccupation.job ||
-                      state.selectedOccupation == FamilyMemberOccupation.business)
+                      state.selectedOccupation ==
+                          FamilyMemberOccupation.business)
                   ? _workTypeId
                   : null,
               role:
                   (state.selectedOccupation == FamilyMemberOccupation.job ||
-                      state.selectedOccupation == FamilyMemberOccupation.business)
+                      state.selectedOccupation ==
+                          FamilyMemberOccupation.business)
                   ? state.selectedRole?.name
                   : null,
               businessName:
@@ -281,28 +278,33 @@ class AddFamilyMemberCubit extends Cubit<AddFamilyMemberState> {
                   : null,
             )
           : await SettingRepo.addMember(
-        name: memberNameController.text.trim(),
-        email: emailController.text.trim(),
-        phone: phoneNumberController.text.trim(),
-        age: ageController.text.trim(),
-        relation: state.selectedRelation?.name ?? "",
-        occupation: state.selectedOccupation?.name ?? "",
-        standardId: state.selectedOccupation == FamilyMemberOccupation.study
-            ? _standardId
-            : null,
-        workTypeId: (state.selectedOccupation == FamilyMemberOccupation.job ||
-                state.selectedOccupation == FamilyMemberOccupation.business)
-            ? _workTypeId
-            : null,
-        role: (state.selectedOccupation == FamilyMemberOccupation.job ||
-                state.selectedOccupation == FamilyMemberOccupation.business)
-            ? state.selectedRole?.name
-            : null,
-        businessName:
-            state.selectedOccupation == FamilyMemberOccupation.business
-            ? businessNameController.text.trim()
-            : null,
-      );
+              name: memberNameController.text.trim(),
+              email: emailController.text.trim(),
+              phone: phoneNumberController.text.trim(),
+              age: ageController.text.trim(),
+              relation: state.selectedRelation?.name ?? "",
+              occupation: state.selectedOccupation?.name ?? "",
+              standardId:
+                  state.selectedOccupation == FamilyMemberOccupation.study
+                  ? _standardId
+                  : null,
+              workTypeId:
+                  (state.selectedOccupation == FamilyMemberOccupation.job ||
+                      state.selectedOccupation ==
+                          FamilyMemberOccupation.business)
+                  ? _workTypeId
+                  : null,
+              role:
+                  (state.selectedOccupation == FamilyMemberOccupation.job ||
+                      state.selectedOccupation ==
+                          FamilyMemberOccupation.business)
+                  ? state.selectedRole?.name
+                  : null,
+              businessName:
+                  state.selectedOccupation == FamilyMemberOccupation.business
+                  ? businessNameController.text.trim()
+                  : null,
+            );
 
       if (!context.mounted) {
         return;

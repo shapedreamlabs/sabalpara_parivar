@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12,10 +13,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pageNotFound => 'Page Not Found';
 
   @override
-  String get connectWithOurSabalparaCommunity => 'Connect With Our Sabalpara Community.';
+  String get connectWithOurSabalparaCommunity =>
+      'Connect With Our Sabalpara Community.';
 
   @override
-  String get onBoardingDescription => 'Discover members, explore businesses, and stay connected with the Sabalpara community in one place.';
+  String get onBoardingDescription =>
+      'Discover members, explore businesses, and stay connected with the Sabalpara community in one place.';
 
   @override
   String get getStarted => 'Get Started';
@@ -24,13 +27,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInYourAccount => 'Sign In Your Account';
 
   @override
-  String get welcomeBackPleaseSignInToContinue => 'Welcome back! Please sign in to continue.';
+  String get welcomeBackPleaseSignInToContinue =>
+      'Welcome back! Please sign in to continue.';
 
   @override
   String get createYourAccount => 'Create Your Account';
 
   @override
-  String get joinTheCommunityAndStayConnect => 'join the Sabalpara Community & stay connect.';
+  String get joinTheCommunityAndStayConnect =>
+      'join the Sabalpara Community & stay connect.';
 
   @override
   String get email => 'Email';
@@ -75,7 +80,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmPasswordIsRequired => 'Confirm Password is required!';
 
   @override
-  String get passwordAndConfirmPasswordIsntMatching => 'Password & Confirm Password isn\'t matching!';
+  String get passwordAndConfirmPasswordIsntMatching =>
+      'Password & Confirm Password isn\'t matching!';
 
   @override
   String get rememberMe => 'Remember Me';
@@ -114,7 +120,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otpVerification => 'OTP Verification';
 
   @override
-  String get weSentACodeToYourMail => 'We sent a 6-digit code to your email It may take a minute to arrive.';
+  String get weSentACodeToYourMail =>
+      'We sent a 6-digit code to your email It may take a minute to arrive.';
 
   @override
   String get didntYouReceiveAnyCode => 'Didn’t you receive any code?';
@@ -171,10 +178,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterConfirmNewPassword => 'Enter Confirm New Password';
 
   @override
-  String get confirmNewPasswordIsRequired => 'Confirm New Password is required!';
+  String get confirmNewPasswordIsRequired =>
+      'Confirm New Password is required!';
 
   @override
-  String get newPasswordAndConfirmNewPasswordIsntMatching => 'New Password & Confirm New Password isn\'t matching!';
+  String get newPasswordAndConfirmNewPasswordIsntMatching =>
+      'New Password & Confirm New Password isn\'t matching!';
 
   @override
   String get updatePassword => 'Update Password';
@@ -222,7 +231,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Logout';
 
   @override
-  String get logoutDescription => 'You will be logged out of your account and need to sign in again to continue.';
+  String get logoutDescription =>
+      'You will be logged out of your account and need to sign in again to continue.';
 
   @override
   String get yesLogout => 'Yes, Logout';
@@ -285,7 +295,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resultUploadedSuccessfully => 'Result Uploaded Successfully!';
 
   @override
-  String get resultUploadedSuccessfullyDesc => 'Your child’s result has been submitted successfully and will be reviewed by the team.';
+  String get resultUploadedSuccessfullyDesc =>
+      'Your child’s result has been submitted successfully and will be reviewed by the team.';
 
   @override
   String get done => 'Done';
@@ -369,37 +380,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterCorrectDetails => 'Enter Correct Details';
 
   @override
-  String get enterCorrectDetailsDesc => 'Make sure the child’s name, class, and school details are accurate.';
+  String get enterCorrectDetailsDesc =>
+      'Make sure the child’s name, class, and school details are accurate.';
 
   @override
   String get uploadClearMarksheet => 'Upload Clear Marksheet';
 
   @override
-  String get uploadClearMarksheetDesc => 'Upload a clear image or PDF of the marksheet. Avoid blurry or cropped files.';
+  String get uploadClearMarksheetDesc =>
+      'Upload a clear image or PDF of the marksheet. Avoid blurry or cropped files.';
 
   @override
   String get checkFileFormat => 'Check File Format';
 
   @override
-  String get checkFileFormatDesc => 'Supported formats: JPG, PNG, PDF (Max size: 5MB)';
+  String get checkFileFormatDesc =>
+      'Supported formats: JPG, PNG, PDF (Max size: 5MB)';
 
   @override
   String get verifyBeforeSubmit => 'Verify Before Submit';
 
   @override
-  String get verifyBeforeSubmitDesc => 'Double-check all details before submitting the result.';
+  String get verifyBeforeSubmitDesc =>
+      'Double-check all details before submitting the result.';
 
   @override
   String get submissionDeadline => 'Submission Deadline';
 
   @override
-  String get submissionDeadlineDesc => 'Upload the result before 30 Oct to participate in SnehMilan 2027.';
+  String get submissionDeadlineDesc =>
+      'Upload the result before 30 Oct to participate in SnehMilan 2027.';
 
   @override
   String get oneSubmissionPerChild => 'One Submission Per Child';
 
   @override
-  String get oneSubmissionPerChildDesc => 'Each child’s result should be uploaded only once.';
+  String get oneSubmissionPerChildDesc =>
+      'Each child’s result should be uploaded only once.';
 
   @override
   String get father => 'Father';
@@ -564,7 +581,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteResult => 'Delete Result';
 
   @override
-  String get deleteResultDescription => 'Are you sure you want to delete this result? This action cannot be undone.';
+  String get deleteResultDescription =>
+      'Are you sure you want to delete this result? This action cannot be undone.';
 
   @override
   String get yesDelete => 'Yes, Delete';
@@ -573,5 +591,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noInternet => 'No Internet';
 
   @override
-  String get noInternetDescription => 'Please check your internet and refresh the page to continue.';
+  String get noInternetDescription =>
+      'Please check your internet and refresh the page to continue.';
 }

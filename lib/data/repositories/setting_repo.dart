@@ -309,10 +309,7 @@ class SettingRepo {
     final response = await ApiService.request(
       type: .post,
       path: ApiConstants.changePassword,
-      body: {
-        'old_password': oldPassword,
-        'new_password': newPassword,
-      },
+      body: {'old_password': oldPassword, 'new_password': newPassword},
       cancelToken: cancelToken,
     );
 

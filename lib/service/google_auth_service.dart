@@ -30,7 +30,9 @@ class GoogleAuthService {
     await _ensureInitialized();
 
     if (!GoogleSignIn.instance.supportsAuthenticate()) {
-      throw AppException(message: 'Google sign in is not supported on this device');
+      throw AppException(
+        message: 'Google sign in is not supported on this device',
+      );
     }
 
     try {

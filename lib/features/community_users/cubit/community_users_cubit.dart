@@ -4,7 +4,7 @@ part 'community_users_state.dart';
 
 class CommunityUsersCubit extends Cubit<CommunityUsersState> {
   CommunityUsersCubit(Map<String, dynamic>? arguments)
-      : super(CommunityUsersState()) {
+    : super(CommunityUsersState()) {
     final title = arguments?["title"]?.toString() ?? "";
     final villageId = arguments?["villageId"]?.toString() ?? "";
     final workTypeId = arguments?["workTypeId"]?.toString() ?? "";

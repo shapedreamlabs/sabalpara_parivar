@@ -62,7 +62,10 @@ class UploadResultScreen extends StatelessWidget {
                           if ((l10n?.standard ?? "").isNotEmpty)
                             Padding(
                               padding: .only(bottom: 10.h),
-                              child: Text(l10n?.standard ?? "", style: styleW500S14),
+                              child: Text(
+                                l10n?.standard ?? "",
+                                style: styleW500S14,
+                              ),
                             ),
                           CustomShimmer(
                             height: 48.h,

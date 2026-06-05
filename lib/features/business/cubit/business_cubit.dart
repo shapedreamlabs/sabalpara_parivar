@@ -68,10 +68,7 @@ class BusinessCubit extends Cubit<BusinessState> {
 
     context.navigator.pushNamed(
       CommunityUsersScreen.routeName,
-      arguments: {
-        "title": workType.name ?? "",
-        "workTypeId": workTypeId,
-      },
+      arguments: {"title": workType.name ?? "", "workTypeId": workTypeId},
     );
   }
 }

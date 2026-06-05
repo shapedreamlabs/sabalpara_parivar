@@ -64,17 +64,17 @@ class UploadResultState extends Equatable {
 
   @override
   List<Object?> get props => [
-        loader,
-        standardsLoading,
-        childNameError,
-        standardError,
-        percentageError,
-        yearError,
-        resultError,
-        standardList,
-        selectedStandard,
-        yearsList,
-        selectedYear,
-        selectedResultFile,
-      ];
+    loader,
+    standardsLoading,
+    childNameError,
+    standardError,
+    percentageError,
+    yearError,
+    resultError,
+    standardList,
+    selectedStandard,
+    yearsList,
+    selectedYear,
+    selectedResultFile,
+  ];
 }

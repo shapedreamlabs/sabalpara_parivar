@@ -50,7 +50,10 @@ class SignUpScreen extends StatelessWidget {
                           onTap: () => cubit.onTapSignIn(context),
                           child: Padding(
                             padding: .symmetric(vertical: 2.h, horizontal: 5.w),
-                            child: Text(l10n?.signIn ?? "", style: styleW700S14),
+                            child: Text(
+                              l10n?.signIn ?? "",
+                              style: styleW700S14,
+                            ),
                           ),
                         ),
                       ),
@@ -130,7 +133,8 @@ class SignUpScreen extends StatelessWidget {
                                         prefixIcon: AppAssets.phoneIcon,
                                         textInputType: TextInputType.number,
                                         inputFormatters: [
-                                          FilteringTextInputFormatter.digitsOnly,
+                                          FilteringTextInputFormatter
+                                              .digitsOnly,
                                           LengthLimitingTextInputFormatter(10),
                                         ],
                                       ),

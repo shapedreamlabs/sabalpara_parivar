@@ -74,10 +74,7 @@ class GalleryCubit extends Cubit<GalleryState> {
 
     context.navigator.pushNamed(
       GalleryDetailScreen.routeName,
-      arguments: {
-        'gallery_id': galleryId,
-        'title': gallery.name ?? '',
-      },
+      arguments: {'gallery_id': galleryId, 'title': gallery.name ?? ''},
     );
   }
 }

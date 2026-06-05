@@ -26,9 +26,9 @@ class GalleryDetailModel {
     final rawList = json["data"];
     final images = rawList is List
         ? rawList
-            .whereType<Map<String, dynamic>>()
-            .map(GalleryImageModel.fromJson)
-            .toList()
+              .whereType<Map<String, dynamic>>()
+              .map(GalleryImageModel.fromJson)
+              .toList()
         : <GalleryImageModel>[];
 
     return GalleryDetailModel(

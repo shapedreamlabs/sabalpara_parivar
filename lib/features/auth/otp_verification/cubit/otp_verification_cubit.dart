@@ -45,7 +45,7 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
     if (context.mounted) {
       context.navigator.pushNamedAndRemoveUntil(
         DashboardScreen.routeName,
-            (route) => false,
+        (route) => false,
       );
     }
   }

@@ -24,9 +24,5 @@ class VillagesState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        loader,
-        villageList,
-        filteredVillageList,
-      ];
+  List<Object?> get props => [loader, villageList, filteredVillageList];
 }

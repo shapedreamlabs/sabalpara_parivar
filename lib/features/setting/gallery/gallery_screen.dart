@@ -53,8 +53,9 @@ class GalleryScreen extends StatelessWidget {
                                     cubit.toggleEventSelection(event);
                                   },
                                   event: event,
-                                  isSelected: state.selectedEventsList
-                                      .contains(event),
+                                  isSelected: state.selectedEventsList.contains(
+                                    event,
+                                  ),
                                 );
                               },
                             ),
@@ -68,8 +69,9 @@ class GalleryScreen extends StatelessWidget {
                                     context.l10n?.noDataFound ??
                                         "No data found",
                                     style: styleW400S16.copyWith(
-                                      color: AppColors.text
-                                          .withValues(alpha: 0.6),
+                                      color: AppColors.text.withValues(
+                                        alpha: 0.6,
+                                      ),
                                     ),
                                   ),
                                 )
@@ -86,8 +88,10 @@ class GalleryScreen extends StatelessWidget {
                                       height: ((1.sw - 48.w) / 2),
                                       child: GalleryItemWidget(
                                         gallery: gallery,
-                                        onTap: () =>
-                                            cubit.onTapGallery(context, gallery),
+                                        onTap: () => cubit.onTapGallery(
+                                          context,
+                                          gallery,
+                                        ),
                                       ),
                                     );
                                   },

@@ -140,7 +140,10 @@ class DashboardRepo {
     ResultsModel result, {
     CancelToken? cancelToken,
   }) async {
-    final resultId = await resolveResultDeleteId(result, cancelToken: cancelToken);
+    final resultId = await resolveResultDeleteId(
+      result,
+      cancelToken: cancelToken,
+    );
     if (resultId == null || resultId.isEmpty) {
       return false;
     }

@@ -68,10 +68,7 @@ class VillagesCubit extends Cubit<VillagesState> {
 
     context.navigator.pushNamed(
       CommunityUsersScreen.routeName,
-      arguments: {
-        "title": village.name ?? "",
-        "villageId": villageId,
-      },
+      arguments: {"title": village.name ?? "", "villageId": villageId},
     );
   }
 }

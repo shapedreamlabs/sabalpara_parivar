@@ -128,7 +128,8 @@ class ResultsModel {
       percentage: json['percentage']?.toString(),
       year: _parseInt(json['year']),
       result: json['result'] is File ? json['result'] as File : null,
-      resultUrl: json['file']?.toString() ??
+      resultUrl:
+          json['file']?.toString() ??
           json['result_url']?.toString() ??
           json['result_file']?.toString(),
       createdAt: json['created_at']?.toString(),
@@ -141,7 +142,8 @@ class ResultsModel {
     final sameYear = year == other.year;
     final samePercentage =
         (percentage ?? '').trim() == (other.percentage ?? '').trim();
-    final sameStandard = standardId == other.standardId ||
+    final sameStandard =
+        standardId == other.standardId ||
         (standardName ?? '').trim() == (other.standardName ?? '').trim();
     return sameName && sameYear && samePercentage && sameStandard;
   }

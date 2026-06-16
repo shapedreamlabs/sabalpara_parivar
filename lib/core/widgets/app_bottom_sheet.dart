@@ -214,10 +214,14 @@ class SureToExitSheetWidget extends StatelessWidget {
             textAlign: .center,
             style: styleW400S14.copyWith(color: AppColors.grey),
           ),
+
+          // Space
           20.h.spaceVertical,
+
+
           CustomButton(
             title: l10n?.yesExitNow ?? "",
-            onTap: context.navigator.pop,
+            onTap: SystemNavigator.pop,
           ),
         ],
       ),
@@ -235,8 +239,46 @@ Future<bool> openDeleteResultConfirmationBottomSheet(
   return confirmed ?? false;
 }
 
+Future<bool> openDeleteMemberConfirmationBottomSheet(
+  BuildContext context,
+) async {
+  final confirmed = await AppBottomSheet.show<bool>(
+    context: context,
+    child: const DeleteMemberConfirmationSheetWidget(),
+  );
+  return confirmed ?? false;
+}
+
 class DeleteResultConfirmationSheetWidget extends StatelessWidget {
   const DeleteResultConfirmationSheetWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return DeleteConfirmationSheetWidget(
+      description: l10n?.deleteResultDescription ?? "",
+    );
+  }
+}
+
+class DeleteMemberConfirmationSheetWidget extends StatelessWidget {
+  const DeleteMemberConfirmationSheetWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return DeleteConfirmationSheetWidget(
+      description: l10n?.deleteMemberDescription ?? "",
+    );
+  }
+}
+
+class DeleteConfirmationSheetWidget extends StatelessWidget {
+  const DeleteConfirmationSheetWidget({super.key, required this.description});
+
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -295,7 +337,7 @@ class DeleteResultConfirmationSheetWidget extends StatelessWidget {
             child: Text(l10n?.areYouSure ?? "", style: styleW700S20),
           ),
           Text(
-            l10n?.deleteResultDescription ?? "",
+            description,
             textAlign: .center,
             style: styleW400S14.copyWith(color: AppColors.grey),
           ),

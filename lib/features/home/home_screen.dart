@@ -19,35 +19,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        return CommonBgWidget(
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: CustomAppBar(
-              backArrow: false,
-              titleWidget: _UserWidget(),
-              // actions: [
-              //   Padding(
-              //     padding: .only(right: AppConstants.horizontalPadding),
-              //     child: Material(
-              //       color: AppColors.white.withValues(alpha: 0.8),
-              //       borderRadius: .circular(500.r),
-              //       child: InkWell(
-              //         onTap: () => context.navigator.pushNamed(
-              //           NotificationsScreen.routeName,
-              //         ),
-              //         borderRadius: .circular(500.r),
-              //         child: Padding(
-              //           padding: .all(10.w),
-              //           child: SvgAsset(
-              //             imagePath: AppAssets.notificationIcon,
-              //             height: 24.h,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ],
-            ),
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: AppColors.lightStatusBar,
+          child: CommonBgWidget(
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              extendBody: true,
+              appBar: CustomAppBar(
+                backArrow: false,
+                bottomSize: 20.h,
+                systemUiStyle: AppColors.lightStatusBar,
+                titleWidget: _UserWidget(),
+              ),
             body: CustomSingleChildScroll(
               child: Column(
                 spacing: 20.h,
@@ -59,6 +42,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+        ),
         );
       },
     );
@@ -71,7 +55,7 @@ class _UserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .only(left: 10.w),
+      padding: .only(left: 0.w, top: 3.h),
       child: Row(
         spacing: 10.w,
         children: [

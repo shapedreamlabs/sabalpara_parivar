@@ -15,9 +15,12 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     onRedirectNext(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: Center(child: AppBrandLogo(dimension: 168.h)),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: AppColors.primaryStatusBar,
+      child: Scaffold(
+        backgroundColor: AppColors.primary,
+        body: Center(child: AppBrandLogo(dimension: 168.h)),
+      ),
     );
   }
 

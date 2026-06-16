@@ -23,7 +23,7 @@ class UploadResultScreen extends StatelessWidget {
         return CommonBgWidget(
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: CustomAppBar(title: l10n?.uploadResult ?? ""),
+            appBar: CustomAppBar(title: l10n?.uploadResult ?? "", backArrow: true,),
             bottomNavigationBar: Padding(
               padding: .symmetric(
                 vertical: 20.h,
@@ -91,6 +91,8 @@ class UploadResultScreen extends StatelessWidget {
                       hintText: l10n?.enterPercentage,
                       error: state.percentageError,
                       textInputType: TextInputType.number,
+                      onChanged: (value) =>
+                          cubit.onChangePercentage(context, value),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(3),

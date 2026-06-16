@@ -10,6 +10,11 @@ class ApiService {
 
   static Dio? _dio;
 
+  static void invalidate() {
+    _dio?.close(force: true);
+    _dio = null;
+  }
+
   static Dio get dio {
     if (_dio != null) return _dio!;
 

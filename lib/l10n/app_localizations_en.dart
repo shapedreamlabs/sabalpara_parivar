@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -256,15 +255,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get childNameIsRequired => 'Child Name is required!';
 
   @override
-  String get standard => 'Standard';
-
-  @override
-  String get selectStandard => 'Select Standard';
-
-  @override
-  String get standardIsRequired => 'Standard is required!';
-
-  @override
   String get percentage => 'Percentage';
 
   @override
@@ -272,6 +262,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get percentageIsRequired => 'Percentage is required!';
+
+  @override
+  String get percentageIsInvalid => 'Enter valid percentage (1-100)';
 
   @override
   String get year => 'Year';
@@ -488,6 +481,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ageIsRequired => 'Age is required!';
 
   @override
+  String get standard => 'Standard';
+
+  @override
+  String get selectStandard => 'Select Standard';
+
+  @override
+  String get standardIsRequired => 'Standard is required!';
+
+  @override
   String get workType => 'Work Type';
 
   @override
@@ -585,6 +587,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Are you sure you want to delete this result? This action cannot be undone.';
 
   @override
+  String get deleteMemberDescription =>
+      'Are you sure you want to delete this member? This action cannot be undone.';
+
+  @override
   String get yesDelete => 'Yes, Delete';
 
   @override
@@ -593,4 +599,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get noInternetDescription =>
       'Please check your internet and refresh the page to continue.';
+
+  @override
+  String get download => 'Download';
+
+  @override
+  String get imageSavedToGallery => 'Image saved to gallery';
+
+  @override
+  String get imageDownloadFailed => 'Could not download image';
+
+  @override
+  String get photoPermissionDenied => 'Photo permission denied';
 }

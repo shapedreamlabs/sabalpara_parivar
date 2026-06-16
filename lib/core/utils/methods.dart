@@ -27,6 +27,63 @@ Future<bool> redirectUrl(String? url) async {
   return false;
 }
 
+Future<void> openPhoneDialer(String? phone) async {
+  final trimmed = phone?.trim() ?? '';
+  if (trimmed.isEmpty) {
+    showErrorToast('Phone number not available');
+    return;
+  }
+
+  final sanitized = trimmed.replaceAll(RegExp(r'[^\d+]'), '');
+  if (sanitized.isEmpty) {
+    showErrorToast('Invalid phone number');
+    return;
+  }
+
+  final uri = Uri.parse('tel:$sanitized');
+
+  try {
+    if (!await canLaunchUrl(uri)) {
+      showErrorToast('Could not open dialer');
+      return;
+    }
+
+    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!launched) {
+      showErrorToast('Could not open dialer');
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+    showErrorToast('Could not open dialer');
+  }
+}
+
+Future<void> openWhatsApp(String? phone) async {
+  final trimmed = phone?.trim() ?? '';
+  if (trimmed.isEmpty) {
+    showErrorToast('Phone number not available');
+    return;
+  }
+
+  final sanitized = trimmed.replaceAll(RegExp(r'[^\d]'), '');
+  if (sanitized.isEmpty) {
+    showErrorToast('Invalid phone number');
+    return;
+  }
+
+  final uri = Uri.parse('https://wa.me/$sanitized');
+
+  try {
+    final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!launched) {
+      showErrorToast('Could not open WhatsApp');
+    }
+  } catch (e) {
+    debugPrint(e.toString());
+    showErrorToast('Could not open WhatsApp');
+  }
+}
+
 Future<void> logoutUser() async {
   await PrefService.clear();
   navigatorKey.currentState?.pushNamedAndRemoveUntil(

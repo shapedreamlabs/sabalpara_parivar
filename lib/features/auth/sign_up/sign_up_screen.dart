@@ -23,52 +23,14 @@ class SignUpScreen extends StatelessWidget {
           value: .light,
           child: Scaffold(
             backgroundColor: AppColors.white,
-            bottomNavigationBar: Container(
-              color: AppColors.white,
-              child: Padding(
-                padding: .symmetric(
-                  vertical: 10.h,
-                  horizontal: AppConstants.horizontalPadding,
-                ),
-                child: SafeArea(
-                  top: false,
-                  child: Row(
-                    spacing: 2.w,
-                    mainAxisAlignment: .center,
-                    children: [
-                      Text(
-                        l10n?.alreadyHaveAnAccount ?? "",
-                        style: styleW500S14.copyWith(
-                          color: AppColors.text.withValues(alpha: 0.6),
-                        ),
-                      ),
 
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: .circular(10.r),
-                          onTap: () => cubit.onTapSignIn(context),
-                          child: Padding(
-                            padding: .symmetric(vertical: 2.h, horizontal: 5.w),
-                            child: Text(
-                              l10n?.signIn ?? "",
-                              style: styleW700S14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
             body: Container(
               color: AppColors.primary,
               child: Align(
                 alignment: .bottomCenter,
                 child: DraggableScrollableSheet(
-                  minChildSize: 0.74,
-                  initialChildSize: 0.74,
+                  minChildSize: 0.75,
+                  initialChildSize: 0.75,
                   builder: (context, scrollController) {
                     return SingleChildScrollView(
                       clipBehavior: .none,
@@ -215,6 +177,50 @@ class SignUpScreen extends StatelessWidget {
                                   //     height: 25.h,
                                   //   ),
                                   // ),
+                                  Container(
+                                    color: AppColors.white,
+                                    child: Padding(
+                                      padding: .symmetric(
+                                        horizontal:
+                                            AppConstants.horizontalPadding,
+                                      ),
+                                      child: SafeArea(
+                                        top: false,
+                                        child: Row(
+                                          spacing: 2.w,
+                                          mainAxisAlignment: .center,
+                                          children: [
+                                            Text(
+                                              l10n?.alreadyHaveAnAccount ?? "",
+                                              style: styleW500S14.copyWith(
+                                                color: AppColors.text
+                                                    .withValues(alpha: 0.6),
+                                              ),
+                                            ),
+
+                                            Material(
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                borderRadius: .circular(10.r),
+                                                onTap: () =>
+                                                    cubit.onTapSignIn(context),
+                                                child: Padding(
+                                                  padding: .symmetric(
+                                                    vertical: 2.h,
+                                                    horizontal: 5.w,
+                                                  ),
+                                                  child: Text(
+                                                    l10n?.signIn ?? "",
+                                                    style: styleW700S14,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

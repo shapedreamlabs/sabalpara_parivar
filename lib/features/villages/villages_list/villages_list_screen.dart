@@ -22,7 +22,7 @@ class VillagesListScreen extends StatelessWidget {
           spreadSize: 1200,
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: CustomAppBar(title: state?.villageName ?? ""),
+            appBar: CustomAppBar(title: state.villageName ?? ""),
             body: CustomListView(
               padding: .symmetric(horizontal: AppConstants.horizontalPadding),
               itemCount: state.villageList.length,
@@ -49,58 +49,70 @@ class VillagesDetailsWidget extends StatelessWidget {
     final l10n = context.l10n;
 
     return Container(
-      padding: .all(14.w),
+      padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: .circular(8.r),
-        border: .all(color: AppColors.text.withValues(alpha: 0.05)),
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(color: AppColors.text.withValues(alpha: 0.05)),
       ),
-      child: Column(
-        spacing: 4.h,
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(villageData.name ?? "", style: styleW700S16),
-
-          RichText(
-            textAlign: .start,
-            text: TextSpan(
+          Expanded(
+            child: Column(
+              spacing: 4.h,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextSpan(
-                  text: "${l10n?.phoneNumber ?? ""}: ",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.6),
+                Text(villageData.name ?? "", style: styleW700S16),
+                RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${l10n?.phoneNumber ?? ""}: ",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.6),
+                        ),
+                      ),
+                      TextSpan(
+                        text: villageData.phone ?? "",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                TextSpan(
-                  text: villageData.phone ?? "",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8),
+                RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${l10n?.business ?? ""}: ",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.6),
+                        ),
+                      ),
+                      TextSpan(
+                        text: villageData.business ?? "",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-
-          RichText(
-            textAlign: .start,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: "${l10n?.business ?? ""}: ",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.6),
-                  ),
-                ),
-                TextSpan(
-                  text: villageData.business ?? "",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8),
-                  ),
-                ),
-              ],
+          if ((villageData.phone ?? '').trim().isNotEmpty)
+            CustomIconButton(
+              icon: AppAssets.phoneIcon,
+              size: 20.h,
+              radius: 10.r,
+              onTap: () => openPhoneDialer(villageData.phone),
             ),
-          ),
         ],
       ),
     );

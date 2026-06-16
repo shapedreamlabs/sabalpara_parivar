@@ -12,10 +12,11 @@ class LanguageCubit extends Cubit<LanguageState> {
     //   ),
     // );
     final language = PrefService.getString(PrefKeys.localLanguage);
+    final languageCode = language.split('_').first.split('-').first;
     refresh(
       state.copyWith(
         selectedLanguage: state.languages.firstWhereOrNull(
-          (element) => element.code == language.split('_').first,
+          (element) => element.code == languageCode,
         ),
       ),
     );
@@ -34,28 +35,26 @@ class LanguageCubit extends Cubit<LanguageState> {
   Future<void> updateLanguage(BuildContext context) async {
     try {
       refresh(state.copyWith(loader: true));
-      // final Map<String, dynamic> body = {
-      //   "language": state.selectedLanguage?.title,
-      // };
 
-      // final result = await SettingsApi.updateUserProfile(body);
-      final result = true;
+      await context.read<AppCubit>().changeLanguage(
+        Locale(state.selectedLanguage?.code ?? 'en'),
+      );
 
-      if (result && context.mounted) {
-        await context.read<AppCubit>().changeLanguage(
-          Locale(
-            state.selectedLanguage?.code ?? "en",
-            state.selectedLanguage?.countryCode ?? "US",
-          ),
-        );
-
-        if (context.mounted) {
-          context.navigator.pop();
-        }
+      if (!context.mounted) {
+        return;
       }
+
+      await WidgetsBinding.instance.endOfFrame;
+
+      if (!context.mounted) {
+        return;
+      }
+
+      context.navigator.pop(true);
     } catch (e, stack) {
       refresh(state.copyWith(loader: false));
       showCatchToast(e, stack, msg: e.toString());
+      return;
     }
 
     refresh(state.copyWith(loader: false));

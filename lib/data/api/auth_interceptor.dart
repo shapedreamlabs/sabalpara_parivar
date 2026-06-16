@@ -68,10 +68,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   void _forceLogout() {
-    /// Clear tokens / user session
     logoutUser();
-
-    /// Optional: cancel all pending requests
-    dio.close(force: true);
+    ApiService.invalidate();
   }
 }

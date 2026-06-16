@@ -68,6 +68,15 @@ class FamilyMembersCubit extends Cubit<FamilyMembersState> {
   }
 
   Future<void> onTapDeleteMember(BuildContext context, int index) async {
+    if (index < 0 || index >= state.familyMembersList.length) {
+      return;
+    }
+
+    final confirmed = await openDeleteMemberConfirmationBottomSheet(context);
+    if (!confirmed || !context.mounted) {
+      return;
+    }
+
     final memberId = state.familyMembersList[index].id?.toString() ?? "";
     if (memberId.isEmpty) {
       showErrorToast('Invalid member id');

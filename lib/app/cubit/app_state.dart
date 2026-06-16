@@ -1,10 +1,14 @@
 part of 'app_cubit.dart';
 
 class AppState extends Equatable {
-  AppState({this.locale});
+  const AppState({required this.locale});
 
-  final Locale? locale;
-  final List<Locale> languageList = [Locale("en", "US"), Locale("es", "ES")];
+  final Locale locale;
+  final List<Locale> languageList = const [
+    Locale('en'),
+    Locale('hi'),
+    Locale('gu'),
+  ];
 
   AppState copyWith({Locale? locale}) {
     return AppState(locale: locale ?? this.locale);

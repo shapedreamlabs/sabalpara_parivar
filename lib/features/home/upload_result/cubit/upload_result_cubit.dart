@@ -46,6 +46,33 @@ class UploadResultCubit extends Cubit<UploadResultState> {
     refresh(state.copyWith(selectedYear: value));
   }
 
+  void onChangePercentage(BuildContext context, String value) {
+    refresh(
+      state.copyWith(
+        percentageError: _percentageValidationMessage(context, value),
+      ),
+    );
+  }
+
+  String _percentageValidationMessage(
+    BuildContext context,
+    String value, {
+    bool isRequired = false,
+  }) {
+    final trimmed = value.trim();
+
+    if (trimmed.isEmpty) {
+      return isRequired ? (context.l10n?.percentageIsRequired ?? "") : "";
+    }
+
+    final percentage = int.tryParse(trimmed);
+    if (percentage == null || percentage < 1 || percentage > 100) {
+      return context.l10n?.percentageIsInvalid ?? "";
+    }
+
+    return "";
+  }
+
   Future<void> onTapUploadResult(BuildContext context) async {
     final pickedImage = await MediaPicker.pickFile(context: context);
 
@@ -76,10 +103,11 @@ class UploadResultCubit extends Cubit<UploadResultState> {
     if (percentageController.text.trim().isEmpty) {
       percentageError = context.l10n?.percentageIsRequired ?? "";
     } else {
-      final percentage = int.tryParse(percentageController.text.trim());
-      if (percentage == null || percentage < 0 || percentage > 100) {
-        percentageError = "Enter valid percentage (0-100)";
-      }
+      percentageError = _percentageValidationMessage(
+        context,
+        percentageController.text,
+        isRequired: true,
+      );
     }
 
     if (state.selectedYear == null) {

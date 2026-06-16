@@ -30,48 +30,6 @@ class SignInScreen extends StatelessWidget {
             value: .light,
             child: Scaffold(
               backgroundColor: AppColors.white,
-              bottomNavigationBar: Container(
-                color: AppColors.white,
-                child: Padding(
-                  padding: .symmetric(
-                    vertical: 10.h,
-                    horizontal: AppConstants.horizontalPadding,
-                  ),
-                  child: SafeArea(
-                    top: false,
-                    child: Row(
-                      spacing: 2.w,
-                      mainAxisAlignment: .center,
-                      children: [
-                        Text(
-                          l10n?.youDontHaveAnAccount ?? "",
-                          style: styleW500S14.copyWith(
-                            color: AppColors.text.withValues(alpha: 0.6),
-                          ),
-                        ),
-
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: .circular(10.r),
-                            onTap: () => cubit.onTapSignUp(context),
-                            child: Padding(
-                              padding: .symmetric(
-                                vertical: 2.h,
-                                horizontal: 5.w,
-                              ),
-                              child: Text(
-                                l10n?.signUp ?? "",
-                                style: styleW700S14,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
               body: Container(
                 height: .maxFinite,
                 color: AppColors.primary,
@@ -191,54 +149,51 @@ class SignInScreen extends StatelessWidget {
                                       onTap: () => cubit.onTapSignIn(context),
                                     ),
 
-                                    // Row(
-                                    //   spacing: 8.w,
-                                    //   children: [
-                                    //     Expanded(
-                                    //       child: CommonDivider(
-                                    //         color: AppColors.text.withValues(
-                                    //           alpha: 0.2,
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //
-                                    //     Text(
-                                    //       l10n?.orSignInWith ?? "",
-                                    //       style: styleW400S14.copyWith(
-                                    //         color: AppColors.text.withValues(
-                                    //           alpha: 0.6,
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //
-                                    //     Expanded(
-                                    //       child: CommonDivider(
-                                    //         color: AppColors.text.withValues(
-                                    //           alpha: 0.2,
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
+                                    Container(
+                                      color: AppColors.white,
+                                      child: Padding(
+                                        padding: .symmetric(
+                                          horizontal:
+                                              AppConstants.horizontalPadding,
+                                        ),
+                                        child: SafeArea(
+                                          top: false,
+                                          child: Row(
+                                            spacing: 2.w,
+                                            mainAxisAlignment: .center,
+                                            children: [
+                                              Text(
+                                                l10n?.youDontHaveAnAccount ??
+                                                    "",
+                                                style: styleW500S14.copyWith(
+                                                  color: AppColors.text
+                                                      .withValues(alpha: 0.6),
+                                                ),
+                                              ),
 
-                                    // CustomButton(
-                                    //   style: styleW400S14,
-                                    //   title: l10n?.signInGoogle ?? "",
-                                    //   isLoading: state.isLoading,
-                                    //   buttonColor: Colors.transparent,
-                                    //   borderColor: AppColors.text.withValues(
-                                    //     alpha: 0.1,
-                                    //   ),
-                                    //   onTap: state.isLoading
-                                    //       ? () {}
-                                    //       : () => cubit.onTapGoogleSignIn(
-                                    //             context,
-                                    //           ),
-                                    //   startWidget: AssetsImg(
-                                    //     imagePath: AppAssets.googleLogoImg,
-                                    //     height: 25.h,
-                                    //   ),
-                                    // ),
+                                              Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                  borderRadius: .circular(10.r),
+                                                  onTap: () => cubit
+                                                      .onTapSignUp(context),
+                                                  child: Padding(
+                                                    padding: .symmetric(
+                                                      vertical: 2.h,
+                                                      horizontal: 5.w,
+                                                    ),
+                                                    child: Text(
+                                                      l10n?.signUp ?? "",
+                                                      style: styleW700S14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

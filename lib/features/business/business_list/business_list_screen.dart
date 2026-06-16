@@ -49,58 +49,70 @@ class BusinessDetailsWidget extends StatelessWidget {
     final l10n = context.l10n;
 
     return Container(
-      padding: .all(14.w),
+      padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: .circular(8.r),
-        border: .all(color: AppColors.text.withValues(alpha: 0.05)),
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(color: AppColors.text.withValues(alpha: 0.05)),
       ),
-      child: Column(
-        spacing: 4.h,
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(businessData.name ?? "", style: styleW700S16),
-
-          RichText(
-            textAlign: .start,
-            text: TextSpan(
+          Expanded(
+            child: Column(
+              spacing: 4.h,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextSpan(
-                  text: "${l10n?.phoneNumber ?? ""}: ",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.6),
+                Text(businessData.name ?? "", style: styleW700S16),
+                RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${l10n?.phoneNumber ?? ""}: ",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.6),
+                        ),
+                      ),
+                      TextSpan(
+                        text: businessData.phone ?? "",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                TextSpan(
-                  text: businessData.phone ?? "",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8),
+                RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${l10n?.villageName ?? ""}: ",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.6),
+                        ),
+                      ),
+                      TextSpan(
+                        text: businessData.village ?? "",
+                        style: styleW400S14.copyWith(
+                          color: AppColors.text.withValues(alpha: 0.8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-
-          RichText(
-            textAlign: .start,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: "${l10n?.villageName ?? ""}: ",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.6),
-                  ),
-                ),
-                TextSpan(
-                  text: businessData.village ?? "",
-                  style: styleW400S14.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8),
-                  ),
-                ),
-              ],
+          // if ((businessData.phone ?? '').trim().isNotEmpty) 
+            CustomIconButton(
+              icon: AppAssets.phoneIcon,
+              size: 20.h,
+              radius: 10.r,
+              onTap: () => openPhoneDialer(businessData.phone),
             ),
-          ),
         ],
       ),
     );

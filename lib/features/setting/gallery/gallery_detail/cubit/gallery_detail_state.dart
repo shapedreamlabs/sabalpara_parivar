@@ -7,6 +7,7 @@ class GalleryDetailState extends Equatable {
     this.title = '',
     this.imagesList = const [],
     this.hasMore = false,
+    this.downloadingImageId,
   });
 
   final bool loader;
@@ -14,6 +15,7 @@ class GalleryDetailState extends Equatable {
   final String title;
   final List<GalleryImageModel> imagesList;
   final bool hasMore;
+  final int? downloadingImageId;
 
   GalleryDetailState copyWith({
     bool? loader,
@@ -21,6 +23,8 @@ class GalleryDetailState extends Equatable {
     String? title,
     List<GalleryImageModel>? imagesList,
     bool? hasMore,
+    int? downloadingImageId,
+    bool resetDownloadingImageId = false,
   }) {
     return GalleryDetailState(
       loader: loader ?? this.loader,
@@ -28,9 +32,13 @@ class GalleryDetailState extends Equatable {
       title: title ?? this.title,
       imagesList: imagesList ?? this.imagesList,
       hasMore: hasMore ?? this.hasMore,
+      downloadingImageId: resetDownloadingImageId
+          ? null
+          : downloadingImageId ?? this.downloadingImageId,
     );
   }
 
   @override
-  List<Object?> get props => [loader, loadingMore, title, imagesList, hasMore];
+  List<Object?> get props =>
+      [loader, loadingMore, title, imagesList, hasMore, downloadingImageId];
 }

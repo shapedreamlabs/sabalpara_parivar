@@ -24,11 +24,15 @@ class AppView extends StatelessWidget {
               builder: (context, state) {
                 return OKToast(
                   child: MaterialApp(
+                    
                     localizationsDelegates: [
                       ...AppLocalizations.localizationsDelegates,
                     ],
                     supportedLocales: AppLocalizations.supportedLocales,
                     locale: state.locale,
+                    localeResolutionCallback: (deviceLocale, supportedLocales) {
+                      return state.locale;
+                    },
                     theme: AppColors.themeData,
                     navigatorKey: navigatorKey,
                     debugShowCheckedModeBanner: kDebugMode,

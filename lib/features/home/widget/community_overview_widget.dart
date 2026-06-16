@@ -24,6 +24,7 @@ class CommunityOverviewWidget extends StatelessWidget {
                   iconImage: AppAssets.familiesIcon,
                   count: state.totalFamily,
                   title: l10n?.totalFamilies ?? "",
+                  onTap: () {},
                 ),
               ),
 
@@ -32,6 +33,7 @@ class CommunityOverviewWidget extends StatelessWidget {
                   iconImage: AppAssets.membersIcon,
                   count: state.totalMembers,
                   title: l10n?.totalMembers ?? "",
+                  onTap: () {},
                 ),
               ),
             ],
@@ -47,6 +49,7 @@ class CommunityOverviewWidget extends StatelessWidget {
                   iconImage: AppAssets.businessesIcon,
                   count: state.totalBusinesses,
                   title: l10n?.totalBusinesses ?? "",
+                  onTap: () => context.read<DashboardCubit>().onTabChanged(1),
                 ),
               ),
 
@@ -55,6 +58,7 @@ class CommunityOverviewWidget extends StatelessWidget {
                   iconImage: AppAssets.villagesIcon,
                   count: state.totalVillages,
                   title: l10n?.totalVillages ?? "",
+                  onTap: () => context.read<DashboardCubit>().onTabChanged(2),
                 ),
               ),
             ],
@@ -68,30 +72,40 @@ class CommunityOverviewWidget extends StatelessWidget {
     required String iconImage,
     required int count,
     required String title,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      padding: .all(14.w),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: .circular(8.r),
-        border: .all(color: AppColors.text.withValues(alpha: 0.05)),
-      ),
-      child: Column(
-        spacing: 8.h,
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
-        children: [
-          SvgAsset(imagePath: iconImage, height: 40.h),
-
-          Text("$count", style: styleW700S18),
-
-          Text(
-            title,
-            style: styleW400S14.copyWith(
-              color: AppColors.text.withValues(alpha: 0.6),
-            ),
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(8.r),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8.r),
+        onTap: onTap,
+        child: Ink(
+          padding: EdgeInsets.all(14.w),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(8.r),
+            border: Border.all(color: AppColors.text.withValues(alpha: 0.05)),
           ),
-        ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgAsset(imagePath: iconImage, height: 40.h),
+
+              SizedBox(height: 8.h),
+
+              Text("$count", style: styleW700S18),
+
+              Text(
+                title,
+                style: styleW400S14.copyWith(
+                  color: AppColors.text.withValues(alpha: 0.6),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

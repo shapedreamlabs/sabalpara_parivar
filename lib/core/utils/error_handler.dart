@@ -5,6 +5,10 @@ class ErrorHandler {
   ErrorHandler._();
 
   static String handle(dynamic e, {bool showToast = true}) {
+    if (_isUnauthorizedError(e)) {
+      return '';
+    }
+
     String message = 'Something went wrong';
 
     if (e is AppException) {
@@ -23,7 +27,31 @@ class ErrorHandler {
     return message;
   }
 
+  static bool _isUnauthorizedError(dynamic e) {
+    if (e is AppException && e.statusCode == 401) {
+      return true;
+    }
+
+    if (e is DioException) {
+      if (e.response?.statusCode == 401) {
+        return true;
+      }
+
+      final error = e.error;
+      if (error is AppException && error.statusCode == 401) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   static String _handleDioError(DioException e) {
+    final wrappedError = e.error;
+    if (wrappedError is AppException) {
+      return wrappedError.message;
+    }
+
     switch (e.type) {
       case DioExceptionType.connectionError:
         return 'No internet connection';

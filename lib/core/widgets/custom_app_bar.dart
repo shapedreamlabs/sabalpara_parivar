@@ -39,7 +39,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       systemOverlayStyle: systemUiStyle ?? .dark,
       leading: backArrow && leading == null
-          ? Center(
+          ? Container(
+              margin: EdgeInsets.only(left: 20.w),
+              alignment: Alignment.center,
               child: CustomIconButton(
                 border: Border.all(
                   color: AppColors.text.withValues(alpha: 0.1),

@@ -140,13 +140,15 @@ export 'package:sabalpara_family/features/setting/language/model/language_model.
 export 'package:sabalpara_family/features/setting/my_profile/cubit/my_profile_cubit.dart';
 export 'package:sabalpara_family/features/setting/my_profile/my_profile_screen.dart';
 export 'package:sabalpara_family/features/setting/setting_screen.dart';
-export 'package:sabalpara_family/features/villages/cubit/villages_cubit.dart';
+export 'package:sabalpara_family/features/villages/villages_screen/cubit/villages_cubit.dart';
 export 'package:sabalpara_family/features/villages/villages_list/cubit/villages_list_cubit.dart';
-export 'package:sabalpara_family/features/villages/villages_screen.dart';
+export 'package:sabalpara_family/features/villages/villages_screen/villages_screen.dart';
 export 'package:sabalpara_family/firebase_options.dart';
 export 'package:sabalpara_family/l10n/app_localizations.dart';
 export 'package:sabalpara_family/service/api_service.dart';
+export 'package:sabalpara_family/service/connectivity_service.dart';
 export 'package:sabalpara_family/service/google_auth_service.dart';
+export 'package:sabalpara_family/service/image_download_service.dart';
 export 'package:sabalpara_family/service/pref_service.dart';
 export 'package:sabalpara_family/service/route_service.dart';
 export 'package:shared_preferences/shared_preferences.dart';

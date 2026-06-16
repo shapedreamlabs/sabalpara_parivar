@@ -66,4 +66,33 @@ class GalleryDetailCubit extends Cubit<GalleryDetailState> {
     if (state.loader || state.loadingMore || !state.hasMore) return;
     _loadGalleryDetail(resetData: false, showLoader: false);
   }
+
+  Future<void> downloadImage(
+    GalleryImageModel image, {
+    required String savedMessage,
+    required String permissionDeniedMessage,
+    required String failedMessage,
+  }) async {
+    if (state.downloadingImageId == image.id) {
+      return;
+    }
+
+    refresh(state.copyWith(downloadingImageId: image.id));
+
+    try {
+      await ImageDownloadService.saveNetworkImage(image.image);
+      showSuccessToast(savedMessage);
+    } on AppException catch (e) {
+      final message = e.message == 'Photo permission denied'
+          ? permissionDeniedMessage
+          : failedMessage;
+      showErrorToast(message);
+    } catch (e) {
+      ErrorHandler.handle(e);
+    } finally {
+      if (!isClosed) {
+        refresh(state.copyWith(resetDownloadingImageId: true));
+      }
+    }
+  }
 }

@@ -3,9 +3,11 @@ import 'package:sabalpara_family/sabalpara_family.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit() : super(AppState()) {
+  AppCubit() : super(AppState(locale: defaultLocale)) {
     init();
   }
+
+  static const Locale defaultLocale = Locale('en');
 
   void refresh(AppState state) {
     if (!isClosed) {
@@ -14,28 +16,41 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void init() {
-    final local = getLanStrToLocale(
-      PrefService.getString(PrefKeys.localLanguage),
-    );
-    refresh(state.copyWith(locale: local));
+    final savedLanguage = PrefService.getString(PrefKeys.localLanguage);
+    emit(state.copyWith(locale: getLanStrToLocale(savedLanguage)));
   }
 
   /// Initializes Language and other settings
   Future<void> changeLanguage(Locale locale) async {
-    emit(state.copyWith(locale: locale));
-    await PrefService.set(PrefKeys.localLanguage, getLanLocaleToStr(locale));
+    final normalizedLocale = normalizeLocale(locale);
+    emit(state.copyWith(locale: normalizedLocale));
+    await PrefService.set(
+      PrefKeys.localLanguage,
+      getLanLocaleToStr(normalizedLocale),
+    );
+  }
+
+  Locale normalizeLocale(Locale locale) {
+    switch (locale.languageCode) {
+      case 'hi':
+        return const Locale('hi');
+      case 'gu':
+        return const Locale('gu');
+      default:
+        return defaultLocale;
+    }
   }
 
   Locale getLanStrToLocale(String lan) {
     if (lan.isEmpty) {
-      return const Locale("en", "US");
+      return defaultLocale;
     }
-    String lanCode = lan.split('_').first;
-    String countryCode = lan.split('_').last;
-    return Locale(lanCode, countryCode);
+
+    final languageCode = lan.split('_').first.split('-').first;
+    return normalizeLocale(Locale(languageCode));
   }
 
   String getLanLocaleToStr(Locale locale) {
-    return "${locale.languageCode}_${locale.countryCode}";
+    return normalizeLocale(locale).languageCode;
   }
 }

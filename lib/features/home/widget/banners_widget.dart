@@ -23,9 +23,12 @@ class BannersWidget extends StatelessWidget {
           }
 
           if (!hasMultipleBanners) {
-            return bannerCard(
-              context: context,
-              bannerImage: banners.first.image ?? "",
+            return InkWell(
+              onTap: () => _onTapBanner(context),
+              child: bannerCard(
+                context: context,
+                bannerImage: banners.first.image ?? "",
+              ),
             );
           }
 
@@ -44,9 +47,12 @@ class BannersWidget extends StatelessWidget {
                 ),
                 itemBuilder: (con, index, realIndex) {
                   final banner = banners[index];
-                  return bannerCard(
-                    context: context,
-                    bannerImage: banner.image ?? "",
+                  return InkWell(
+                    onTap: () => _onTapBanner(context),
+                    child: bannerCard(
+                      context: context,
+                      bannerImage: banner.image ?? "",
+                    ),
                   );
                 },
               ),
@@ -62,12 +68,16 @@ class BannersWidget extends StatelessWidget {
     );
   }
 
+  void _onTapBanner(BuildContext context) {
+    context.read<HomeCubit>().onTapUploadResult(context);
+  }
+
   Widget bannerCard({
     required BuildContext context,
     required String bannerImage,
   }) {
     return Padding(
-      padding: EdgeInsets.only(left: 7.w, right: 7.w),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.r),
         child: bannerImage.isNotEmpty
@@ -76,7 +86,7 @@ class BannersWidget extends StatelessWidget {
                 skipBaseUrl: true,
                 height: 145.h,
                 width: double.maxFinite,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitWidth,
               )
             : AssetsImg(imagePath: AppAssets.profileImage, borderRadius: 10.h),
       ),
@@ -119,14 +129,14 @@ class BannersWidget extends StatelessWidget {
     );
   }
 
-  Widget bannerCardLoader() {
-    return Padding(
-      padding: EdgeInsets.only(left: 7.w, right: 7.w),
-      child: CustomShimmer(
-        height: 145.h,
-        width: 100.w - 30.w,
-        borderRadius: 10.h,
-      ),
-    );
-  }
+  // Widget bannerCardLoader() {
+  //   return Padding(
+  //     padding: EdgeInsets.only(left: 7.w, right: 7.w),
+  //     child: CustomShimmer(
+  //       height: 145.h,
+  //       width: 100.w - 30.w,
+  //       borderRadius: 10.h,
+  //     ),
+  //   );
+  // }
 }

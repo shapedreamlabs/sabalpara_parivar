@@ -158,20 +158,11 @@ class CommonResultCardWidget extends StatelessWidget {
                 ),
 
               if (!showStatus && onTapDelete != null)
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(50.r),
-                    onTap: onTapDelete,
-                    child: Padding(
-                      padding: EdgeInsets.all(4.h),
-                      child: Icon(
-                        Icons.delete_outline_rounded,
-                        color: AppColors.red,
-                        size: 20.h,
-                      ),
-                    ),
-                  ),
+                CustomIconButton(
+                  icon: AppAssets.deleteIcon,
+                  size: 20.h,
+                  radius: 10.r,
+                  onTap: onTapDelete,
                 ),
             ],
           ),

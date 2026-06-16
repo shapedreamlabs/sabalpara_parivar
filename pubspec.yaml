@@ -40,23 +40,23 @@ dependencies:
 
   # -------------------------- State Management -------------------------- #
   flutter_bloc: ^9.1.1
-  equatable: ^2.0.7
+  equatable: ^2.0.8
 
   # -------------------------- Responsiveness -------------------------- #
   flutter_screenutil: ^5.9.3
 
   # -------------------------- Local storage -------------------------- #
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   cached_network_image: ^3.4.1
 
   # -------------------------- UI -------------------------- #
-  cupertino_icons: ^1.0.8
-  flutter_svg: ^2.2.3
+  cupertino_icons: ^1.0.9
+  flutter_svg: ^2.3.0
   shimmer: ^3.0.0
   oktoast: ^3.4.0
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.8
   pinput: ^6.0.1
-  carousel_slider: ^5.1.1
+  carousel_slider: ^5.1.2
   dotted_border: ^3.1.0
   dynamic_height_grid_view: ^0.0.4
 
@@ -64,17 +64,17 @@ dependencies:
   dio: ^5.9.2
 
   #_______________________ Media Specific _______________________
-  image_picker: ^1.2.1
+  image_picker: ^1.2.2
   path_provider: ^2.1.5
-  open_file: ^3.5.11
-  file_picker: ^10.3.10
+  open_file: ^4.0.0
+  file_picker: ^11.0.2
   flutter_image_compress: ^2.4.0
 
   # -------------------------- Redirection -------------------------- #
   url_launcher: ^6.3.2
 
   # -------------------------- Internet Connection Checker -------------------------- #
-  internet_connection_checker_plus: ^3.0.0
+  internet_connection_checker_plus: ^3.0.1
   google_sign_in: ^7.2.0
 
   permission_handler: ^12.0.3
@@ -82,7 +82,8 @@ dependencies:
   # -------------------------- Firebase -------------------------- #
   firebase_core: ^4.10.0
   firebase_messaging: ^16.3.0
-  flutter_local_notifications: ^21.0.0
+  flutter_local_notifications: ^22.0.0
+  gal: ^2.3.2
 
 dev_dependencies:
   flutter_test:

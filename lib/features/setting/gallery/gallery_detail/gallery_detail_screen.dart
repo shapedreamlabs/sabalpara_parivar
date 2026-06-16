@@ -61,19 +61,22 @@ class GalleryDetailScreen extends StatelessWidget {
                             builder: (context, index) {
                               final image = state.imagesList[index];
                               final size = (1.sw - 42.w) / 2;
-                              return SizedBox(
-                                width: size,
-                                height: size,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  child: CachedImage(
-                                    image.image,
-                                    width: size,
-                                    height: size,
-                                    fit: BoxFit.cover,
-                                    skipBaseUrl: true,
-                                    borderRadius: 8.r,
-                                  ),
+                              return GalleryImageItemWidget(
+                                image: image,
+                                size: size,
+                                isDownloading:
+                                    state.downloadingImageId == image.id,
+                                onDownload: () => cubit.downloadImage(
+                                  image,
+                                  savedMessage:
+                                      context.l10n?.imageSavedToGallery ??
+                                      'Image saved to gallery',
+                                  permissionDeniedMessage:
+                                      context.l10n?.photoPermissionDenied ??
+                                      'Photo permission denied',
+                                  failedMessage:
+                                      context.l10n?.imageDownloadFailed ??
+                                      'Could not download image',
                                 ),
                               );
                             },
@@ -90,6 +93,88 @@ class GalleryDetailScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class GalleryImageItemWidget extends StatelessWidget {
+  const GalleryImageItemWidget({
+    super.key,
+    required this.image,
+    required this.size,
+    required this.isDownloading,
+    required this.onDownload,
+  });
+
+  final GalleryImageModel image;
+  final double size;
+  final bool isDownloading;
+  final VoidCallback onDownload;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8.r),
+            child: CachedImage(
+              image.image,
+              width: size,
+              height: size,
+              fit: BoxFit.cover,
+              skipBaseUrl: true,
+              borderRadius: 8.r,
+            ),
+          ),
+          Positioned(
+            top: 8.h,
+            right: 8.w,
+            child: PopupMenuButton<String>(
+              padding: EdgeInsets.zero,
+              enabled: !isDownloading,
+              offset: Offset(0, 36.h),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              icon: Container(
+                height: 28.h,
+                width: 28.h,
+                decoration: BoxDecoration(
+                  color: AppColors.black.withValues(alpha: 0.45),
+                  shape: BoxShape.circle,
+                ),
+                child: isDownloading
+                    ? Padding(
+                        padding: EdgeInsets.all(6.h),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.white,
+                        ),
+                      )
+                    : Icon(
+                        Icons.more_vert,
+                        color: AppColors.white,
+                        size: 18.h,
+                      ),
+              ),
+              onSelected: (value) {
+                if (value == 'download') {
+                  onDownload();
+                }
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem<String>(
+                  value: 'download',
+                  child: Text(context.l10n?.download ?? 'Download'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

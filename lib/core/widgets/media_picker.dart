@@ -4,7 +4,7 @@ import 'package:sabalpara_family/sabalpara_family_extra.dart';
 class MediaPicker {
   static Future<File?> pickFile({required BuildContext context}) async {
     try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
+      FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: [
           "jpg",

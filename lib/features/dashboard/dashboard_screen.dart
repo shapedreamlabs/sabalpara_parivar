@@ -17,49 +17,53 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashboardCubit, DashboardState>(
-      builder: (context, state) {
-        return PopScope(
-          canPop: false,
-          onPopInvokedWithResult: (didPop, result) {
-            if (didPop) return;
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, appState) {
+        return BlocBuilder<DashboardCubit, DashboardState>(
+          builder: (context, state) {
+            return PopScope(
+              canPop: false,
+              onPopInvokedWithResult: (didPop, result) {
+                if (didPop) return;
 
-            if (state.tabIndex == 0) {
-              openSureToExitBottomSheet(context);
-            } else {
-              context.read<DashboardCubit>().onTabChanged(0);
-            }
-          },
-          child: Scaffold(
-            bottomNavigationBar: _BottomBar(),
-            body: AnimatedSwitcher(
-              duration: 200.milliseconds,
-              transitionBuilder: (child, animation) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0.5, 0.0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: FadeTransition(opacity: animation, child: child),
-                );
+                if (state.tabIndex == 0) {
+                  openSureToExitBottomSheet(context);
+                } else {
+                  context.read<DashboardCubit>().onTabChanged(0);
+                }
               },
-              child: Builder(
-                key: ValueKey<int>(state.tabIndex),
-                builder: (context) {
-                  if (state.tabIndex == 0) {
-                    return HomeScreen.builder(context);
-                  } else if (state.tabIndex == 1) {
-                    return BusinessScreen.builder(context);
-                  } else if (state.tabIndex == 2) {
-                    return VillagesScreen.builder(context);
-                  } else if (state.tabIndex == 3) {
-                    return CommitteeScreen.builder(context);
-                  }
-                  return SettingScreen.builder(context);
-                },
+              child: Scaffold(
+                bottomNavigationBar: _BottomBar(),
+                body: AnimatedSwitcher(
+                  duration: 200.milliseconds,
+                  transitionBuilder: (child, animation) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0.5, 0.0),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: FadeTransition(opacity: animation, child: child),
+                    );
+                  },
+                  child: Builder(
+                    key: ValueKey<int>(state.tabIndex),
+                    builder: (context) {
+                      if (state.tabIndex == 0) {
+                        return HomeScreen.builder(context);
+                      } else if (state.tabIndex == 1) {
+                        return BusinessScreen.builder(context);
+                      } else if (state.tabIndex == 2) {
+                        return VillagesScreen.builder(context);
+                      } else if (state.tabIndex == 3) {
+                        return CommitteeScreen.builder(context);
+                      }
+                      return SettingScreen.builder(context);
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
@@ -68,7 +72,7 @@ class DashboardScreen extends StatelessWidget {
 
 class _BottomBar extends StatelessWidget {
   const _BottomBar();
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(

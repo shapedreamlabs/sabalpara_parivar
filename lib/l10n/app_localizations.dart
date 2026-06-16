@@ -6,6 +6,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_gu.dart';
+import 'app_localizations_hi.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +94,11 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('gu'),
+    Locale('hi'),
+  ];
 
   /// No description provided for @pageNotFound.
   ///
@@ -568,24 +574,6 @@ abstract class AppLocalizations {
   /// **'Child Name is required!'**
   String get childNameIsRequired;
 
-  /// No description provided for @standard.
-  ///
-  /// In en, this message translates to:
-  /// **'Standard'**
-  String get standard;
-
-  /// No description provided for @selectStandard.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Standard'**
-  String get selectStandard;
-
-  /// No description provided for @standardIsRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Standard is required!'**
-  String get standardIsRequired;
-
   /// No description provided for @percentage.
   ///
   /// In en, this message translates to:
@@ -603,6 +591,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Percentage is required!'**
   String get percentageIsRequired;
+
+  /// No description provided for @percentageIsInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter valid percentage (1-100)'**
+  String get percentageIsInvalid;
 
   /// No description provided for @year.
   ///
@@ -1018,6 +1012,24 @@ abstract class AppLocalizations {
   /// **'Age is required!'**
   String get ageIsRequired;
 
+  /// No description provided for @standard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get standard;
+
+  /// No description provided for @selectStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Standard'**
+  String get selectStandard;
+
+  /// No description provided for @standardIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard is required!'**
+  String get standardIsRequired;
+
   /// No description provided for @workType.
   ///
   /// In en, this message translates to:
@@ -1210,6 +1222,12 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to delete this result? This action cannot be undone.'**
   String get deleteResultDescription;
 
+  /// No description provided for @deleteMemberDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this member? This action cannot be undone.'**
+  String get deleteMemberDescription;
+
   /// No description provided for @yesDelete.
   ///
   /// In en, this message translates to:
@@ -1227,6 +1245,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please check your internet and refresh the page to continue.'**
   String get noInternetDescription;
+
+  /// No description provided for @download.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get download;
+
+  /// No description provided for @imageSavedToGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Image saved to gallery'**
+  String get imageSavedToGallery;
+
+  /// No description provided for @imageDownloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not download image'**
+  String get imageDownloadFailed;
+
+  /// No description provided for @photoPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo permission denied'**
+  String get photoPermissionDenied;
 }
 
 class _AppLocalizationsDelegate
@@ -1240,7 +1282,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['en', 'gu', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1251,6 +1293,10 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'gu':
+      return AppLocalizationsGu();
+    case 'hi':
+      return AppLocalizationsHi();
   }
 
   throw FlutterError(

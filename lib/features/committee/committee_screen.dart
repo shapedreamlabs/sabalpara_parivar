@@ -20,13 +20,16 @@ class CommitteeScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<CommitteeCubit>();
 
-        return CommonBgWidget(
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: AppColors.lightStatusBar,
+          child: CommonBgWidget(
           spreadSize: 1200,
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: CustomAppBar(
               backArrow: false,
               centerTitle: false,
+              systemUiStyle: AppColors.lightStatusBar,
               title: l10n?.committeeMember ?? "",
             ),
             body: state.loader
@@ -93,6 +96,7 @@ class CommitteeScreen extends StatelessWidget {
                     ),
                   ),
           ),
+        ),
         );
       },
     );
@@ -149,7 +153,6 @@ class CommitteeMemberItemWidget extends StatelessWidget {
   const CommitteeMemberItemWidget({super.key, required this.member});
 
   final CommitteeMembersModel member;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -182,43 +185,76 @@ class CommitteeMemberItemWidget extends StatelessWidget {
                   borderRadius: 8.r,
                 ),
 
-          Column(
-            mainAxisAlignment: .spaceBetween,
-            crossAxisAlignment: .start,
-            children: [
-              Text(
-                member.name ?? "",
-                maxLines: 2,
-                overflow: .ellipsis,
-                style: styleW700S16,
-              ),
-
-              5.h.spaceVertical,
-
-              Text(
-                member.phone ?? "",
-                style: styleW500S14.copyWith(
-                  color: AppColors.text.withValues(alpha: 0.8),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: .spaceBetween,
+              crossAxisAlignment: .start,
+              children: [
+                Text(
+                  member.name ?? "",
+                  maxLines: 1,
+                  overflow: .ellipsis,
+                  style: styleW700S16,
                 ),
-              ),
 
-              5.h.spaceVertical,
+                5.h.spaceVertical,
 
-              Text(
-                member.email ?? "",
-                style: styleW500S14.copyWith(
-                  color: AppColors.text.withValues(alpha: 0.8),
+                Text(
+                  member.phone ?? "",
+                  style: styleW500S14.copyWith(
+                    color: AppColors.text.withValues(alpha: 0.8),
+                  ),
                 ),
-              ),
 
-              8.h.spaceVertical,
+                5.h.spaceVertical,
 
-              if ((member.type ?? '').isNotEmpty)
-                CommonTagWidget(
-                  text: member.type ?? "",
-                  color: AppColors.primary,
+                Text(
+                  member.email ?? "",
+                  style: styleW500S14.copyWith(
+                    color: AppColors.text.withValues(alpha: 0.8),
+                  ),
                 ),
-            ],
+
+                5.h.spaceVertical,
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if ((member.type ?? '').isNotEmpty) ...[
+                      CommonTagWidget(
+                        text: member.type ?? "",
+                        color: AppColors.primary,
+                      ),
+                      8.h.spaceVertical,
+                    ],
+
+                    Row(
+                      spacing: 5.h,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CustomIconButton(
+                          icon: AppAssets.phoneIcon,
+                          size: 20.h,
+                          radius: 10.r,
+                          onTap: () => openPhoneDialer(member.phone),
+                        ),
+                        Container(
+                          width: 1.w,
+                          height: 20.h,
+                          color: AppColors.text.withValues(alpha: 0.1),
+                        ),
+                        CustomIconButton(
+                          icon: AppAssets.whatsappIcon,
+                          size: 20.h,
+                          radius: 10.r,
+                          onTap: () => openWhatsApp(member.phone),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

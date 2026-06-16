@@ -14,7 +14,8 @@ abstract class AppAssets {
   static const eye = "${_icons}eye.svg";
   static const eyeClose = "${_icons}eye_close.svg";
   static const emailIcon = "${_icons}email_icon.svg";
-  static const phoneIcon = "${_icons}phone_icon.svg";
+  static const phoneIcon = "${_icons}call_icon.svg";
+  static const whatsappIcon = "${_icons}whatsapp_icon.svg";
   static const lockIcon = "${_icons}lock_icon.svg";
   static const logoutIcon = "${_icons}logout_icon.svg";
   static const homeActiveIcon = "${_icons}home_active_icon.svg";

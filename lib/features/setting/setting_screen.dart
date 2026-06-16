@@ -14,120 +14,127 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, appState) {
+        return BlocBuilder<SettingCubit, SettingState>(
+          builder: (context, state) {
+            final l10n = context.l10n;
 
-    return BlocBuilder<SettingCubit, SettingState>(
-      builder: (context, state) {
-        return CommonBgWidget(
-          backgroundColor: AppColors.primary,
-          blurColor: AppColors.white,
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: CustomAppBar(
-              backArrow: false,
-              centerTitle: false,
-              systemUiStyle: .light,
-              title: l10n?.setting ?? "",
-              titleStyle: styleW700S24.copyWith(color: AppColors.white),
-            ),
-            body: Stack(
-              alignment: .topCenter,
-              children: [
-                Padding(
-                  padding: .symmetric(
-                    vertical: 10.h,
-                    horizontal: AppConstants.horizontalPadding,
-                  ),
-                  child: Column(
-                    mainAxisSize: .min,
-                    children: [
-                      Container(
-                        width: 115.h,
-                        height: 115.h,
-                        decoration: BoxDecoration(
-                          color: AppColors.white.withValues(alpha: 0.6),
-                          borderRadius: .circular(500.r),
-                        ),
-                        child: Center(
-                          child: (state.avatar.isNotEmpty)
-                              ? CachedImage(
-                                  state.avatar,
-                                  skipBaseUrl: true,
-                                  height: 114.h,
-                                  width: 114.h,
-                                  fit: .cover,
-                                  borderRadius: 500.r,
-                                )
-                              : AssetsImg(
-                                  imagePath: AppAssets.profileImage,
-                                  height: 114.h,
-                                  width: 114.h,
-                                  borderRadius: 500.r,
-                                ),
-                        ),
-                      ),
-
-                      15.h.spaceVertical,
-
-                      Text(
-                        state.name.isNotEmpty ? state.name : "User",
-                        style: styleW700S20.copyWith(color: AppColors.white),
-                      ),
-
-                      6.h.spaceVertical,
-
-                      Text(
-                        state.email,
-                        style: styleW400S16.copyWith(color: AppColors.white),
-                      ),
-                    ],
-                  ),
-                ),
-
-                Align(
-                  alignment: .bottomCenter,
-                  child: DraggableScrollableSheet(
-                    minChildSize: 0.6,
-                    initialChildSize: 0.65,
-                    builder: (context, scrollController) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: .vertical(top: .circular(20.r)),
-                        ),
-                        child: SingleChildScrollView(
-                          child: CustomListView(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: state.settings.length,
-                            separatorBuilder: (context, index) => Padding(
-                              padding: .symmetric(
-                                horizontal: AppConstants.horizontalPadding,
-                              ),
-                              child: CommonDivider(
-                                color: AppColors.text.withValues(alpha: 0.1),
-                              ),
-                            ),
-                            itemBuilder: (context, index) {
-                              final setting = state.settings[index];
-
-                              return SettingItemWidget(
-                                isFirst: index == 0,
-                                isLast: index == state.settings.length - 1,
-                                title: setting.title ?? "",
-                                icon: setting.icon ?? "",
-                                onTap: setting.onTap,
-                              );
-                            },
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+              value: AppColors.primaryStatusBar,
+              child: CommonBgWidget(
+            backgroundColor: AppColors.primary,
+            blurColor: AppColors.white,
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: CustomAppBar(
+                backArrow: false,
+                centerTitle: false,
+                systemUiStyle: AppColors.primaryStatusBar,
+                title: l10n?.setting ?? "",
+                titleStyle: styleW700S24.copyWith(color: AppColors.white),
+              ),
+              body: Stack(
+                alignment: .topCenter,
+                children: [
+                  Padding(
+                    padding: .symmetric(
+                      vertical: 10.h,
+                      horizontal: AppConstants.horizontalPadding,
+                    ),
+                    child: Column(
+                      mainAxisSize: .min,
+                      children: [
+                        Container(
+                          width: 115.h,
+                          height: 115.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.white.withValues(alpha: 0.6),
+                            borderRadius: .circular(500.r),
+                          ),
+                          child: Center(
+                            child: (state.avatar.isNotEmpty)
+                                ? CachedImage(
+                                    state.avatar,
+                                    skipBaseUrl: true,
+                                    height: 114.h,
+                                    width: 114.h,
+                                    fit: .cover,
+                                    borderRadius: 500.r,
+                                  )
+                                : AssetsImg(
+                                    imagePath: AppAssets.profileImage,
+                                    height: 114.h,
+                                    width: 114.h,
+                                    borderRadius: 500.r,
+                                  ),
                           ),
                         ),
-                      );
-                    },
+
+                        15.h.spaceVertical,
+
+                        Text(
+                          state.name.isNotEmpty ? state.name : "User",
+                          style: styleW700S20.copyWith(color: AppColors.white),
+                        ),
+
+                        6.h.spaceVertical,
+
+                        Text(
+                          state.email,
+                          style: styleW400S16.copyWith(color: AppColors.white),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+
+                  Align(
+                    alignment: .bottomCenter,
+                    child: DraggableScrollableSheet(
+                      minChildSize: 0.6,
+                      initialChildSize: 0.65,
+                      builder: (context, scrollController) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: .vertical(top: .circular(20.r)),
+                          ),
+                          child: SingleChildScrollView(
+                            child: CustomListView(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: state.settings.length,
+                              separatorBuilder: (context, index) => Padding(
+                                padding: .symmetric(
+                                  horizontal: AppConstants.horizontalPadding,
+                                ),
+                                child: CommonDivider(
+                                  color: AppColors.text.withValues(alpha: 0.1),
+                                ),
+                              ),
+                              itemBuilder: (context, index) {
+                                final setting = state.settings[index];
+
+                                return SettingItemWidget(
+                                  isFirst: index == 0,
+                                  isLast: index == state.settings.length - 1,
+                                  title: setting.title ?? "",
+                                  icon: setting.icon ?? "",
+                                  onTap: setting.onTap,
+                                );
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+        );
+          },
         );
       },
     );

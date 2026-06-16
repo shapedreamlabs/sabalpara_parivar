@@ -14,6 +14,18 @@ class AppColors {
   static const Color peach = Color(0xFFFFA565);
   static const Color goldenYellow = Color(0xFFFFD265);
 
+  static   SystemUiOverlayStyle lightStatusBar = SystemUiOverlayStyle(
+    statusBarColor: AppColors.primary.withValues(alpha: 0.05),
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+  );
+
+  static const SystemUiOverlayStyle primaryStatusBar = SystemUiOverlayStyle(
+    statusBarColor: primary,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+  );
+
   ///
   static MaterialColor generateMaterialColor() {
     return MaterialColor(primary.hashCode, {

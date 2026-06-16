@@ -37,7 +37,7 @@ class AddFamilyMemberScreen extends StatelessWidget {
                 top: false,
                 child: CustomButton(
                   title:
-                      "${state.memberId.isEmpty ? l10n?.addMember : l10n?.editMember}",
+                      "${state.memberId.isEmpty ? l10n?.addMember : l10n?.save}",
                   isLoading: state.loader,
                   onTap: () => cubit.onTapSubmit(context),
                 ),

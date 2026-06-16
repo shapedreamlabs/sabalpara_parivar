@@ -40,6 +40,6 @@ Future<void> showCatchToast(
 }
 
 bool isEnglishSelected() {
-  return (PrefService.getString(PrefKeys.localLanguage) == "English") ||
-      (PrefService.getString(PrefKeys.localLanguage).isEmpty);
+  final language = PrefService.getString(PrefKeys.localLanguage);
+  return language.isEmpty || language.split('_').first.split('-').first == 'en';
 }

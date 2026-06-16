@@ -46,7 +46,7 @@ class SettingCubit extends Cubit<SettingState> {
       SettingsModel(
         title: context.l10n?.language ?? "",
         icon: AppAssets.languageIcon,
-        onTap: () => context.navigator.pushNamed(LanguageScreen.routeName),
+        onTap: () => onTapLanguage(context),
       ),
       SettingsModel(
         title: context.l10n?.logout ?? "",
@@ -76,5 +76,24 @@ class SettingCubit extends Cubit<SettingState> {
         ),
       );
     } catch (_) {}
+  }
+
+  Future<void> onTapLanguage(BuildContext context) async {
+    final languageUpdated = await context.navigator.pushNamed(
+      LanguageScreen.routeName,
+    );
+
+    if (!context.mounted || languageUpdated != true) {
+      return;
+    }
+
+    await WidgetsBinding.instance.endOfFrame;
+
+    if (!context.mounted) {
+      return;
+    }
+
+    init(context);
+    context.read<DashboardCubit>().refresh(context.read<DashboardCubit>().state);
   }
 }

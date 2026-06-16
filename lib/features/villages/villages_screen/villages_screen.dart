@@ -20,13 +20,16 @@ class VillagesScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<VillagesCubit>();
 
-        return CommonBgWidget(
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: AppColors.lightStatusBar,
+          child: CommonBgWidget(
           spreadSize: 1200,
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: CustomAppBar(
               backArrow: false,
               centerTitle: false,
+              systemUiStyle: AppColors.lightStatusBar,
               title: l10n?.villages ?? "",
             ),
             body: state.loader
@@ -75,6 +78,7 @@ class VillagesScreen extends StatelessWidget {
                     ),
                   ),
           ),
+        ),
         );
       },
     );

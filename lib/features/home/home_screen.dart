@@ -26,23 +26,24 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
               extendBody: true,
               appBar: CustomAppBar(
+                flexibleSpaceWidget: _UserWidget(),
                 backArrow: false,
                 bottomSize: 20.h,
                 systemUiStyle: AppColors.lightStatusBar,
-                titleWidget: _UserWidget(),
+                // titleWidget: _UserWidget(),
               ),
-            body: CustomSingleChildScroll(
-              child: Column(
-                spacing: 20.h,
-                children: [
-                  BannersWidget(),
-                  CommunityOverviewWidget(),
-                  ResultsWidget(),
-                ],
+              body: CustomSingleChildScroll(
+                child: Column(
+                  spacing: 20.h,
+                  children: [
+                    BannersWidget(),
+                    CommunityOverviewWidget(),
+                    ResultsWidget(),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
         );
       },
     );
@@ -55,9 +56,10 @@ class _UserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .only(left: 0.w, top: 3.h),
+      padding: .only(left: 20.w, top: 40.h),
       child: Row(
         spacing: 10.w,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipOval(
             child: (userModel?.image ?? "").isNotEmpty
@@ -78,13 +80,13 @@ class _UserWidget extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: .start,
-              mainAxisAlignment: .start,
+              mainAxisAlignment: .center,
               spacing: 2.h,
               children: [
                 Text(
                   greetingText,
                   style: styleW400S16.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8),
+                    color: AppColors.text.withValues(alpha: 0.8), 
                   ),
                 ),
                 Text(userModel?.name ?? "-", style: styleW600S18),

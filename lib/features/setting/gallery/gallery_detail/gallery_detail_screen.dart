@@ -66,6 +66,8 @@ class GalleryDetailScreen extends StatelessWidget {
                                 size: size,
                                 isDownloading:
                                     state.downloadingImageId == image.id,
+                                onTap: () =>
+                                    cubit.openImagePreview(context, index),
                                 onDownload: () => cubit.downloadImage(
                                   image,
                                   savedMessage:
@@ -103,12 +105,14 @@ class GalleryImageItemWidget extends StatelessWidget {
     required this.image,
     required this.size,
     required this.isDownloading,
+    required this.onTap,
     required this.onDownload,
   });
 
   final GalleryImageModel image;
   final double size;
   final bool isDownloading;
+  final VoidCallback onTap;
   final VoidCallback onDownload;
 
   @override
@@ -118,15 +122,19 @@ class GalleryImageItemWidget extends StatelessWidget {
       height: size,
       child: Stack(
         children: [
-          ClipRRect(
+          InkWell(
+            onTap: onTap,
             borderRadius: BorderRadius.circular(8.r),
-            child: CachedImage(
-              image.image,
-              width: size,
-              height: size,
-              fit: BoxFit.cover,
-              skipBaseUrl: true,
-              borderRadius: 8.r,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.r),
+              child: CachedImage(
+                image.image,
+                width: size,
+                height: size,
+                fit: BoxFit.cover,
+                skipBaseUrl: true,
+                borderRadius: 8.r,
+              ),
             ),
           ),
           Positioned(

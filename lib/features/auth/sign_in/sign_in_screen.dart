@@ -109,14 +109,8 @@ class SignInScreen extends StatelessWidget {
 
                                         Row(
                                           spacing: 10.w,
-                                          mainAxisAlignment: .spaceBetween,
+                                          mainAxisAlignment: .end,
                                           children: [
-                                            CustomCheckbox(
-                                              value: state.rememberMe,
-                                              label: l10n?.rememberMe ?? "",
-                                              onChanged: (value) =>
-                                                  cubit.onChangeRememberMe(),
-                                            ),
 
                                             Material(
                                               color: Colors.transparent,

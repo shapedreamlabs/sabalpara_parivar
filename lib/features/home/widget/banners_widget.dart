@@ -86,7 +86,7 @@ class BannersWidget extends StatelessWidget {
                 skipBaseUrl: true,
                 height: 145.h,
                 width: double.maxFinite,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.fill,
               )
             : AssetsImg(imagePath: AppAssets.profileImage, borderRadius: 10.h),
       ),

@@ -67,6 +67,22 @@ class GalleryDetailCubit extends Cubit<GalleryDetailState> {
     _loadGalleryDetail(resetData: false, showLoader: false);
   }
 
+  void openImagePreview(BuildContext context, int index) {
+    if (index < 0 || index >= state.imagesList.length) return;
+
+    context.navigator.push(
+      MaterialPageRoute(
+        settings: const RouteSettings(
+          name: GalleryImagePreviewScreen.routeName,
+        ),
+        builder: (_) => BlocProvider.value(
+          value: this,
+          child: GalleryImagePreviewScreen(initialIndex: index),
+        ),
+      ),
+    );
+  }
+
   Future<void> downloadImage(
     GalleryImageModel image, {
     required String savedMessage,

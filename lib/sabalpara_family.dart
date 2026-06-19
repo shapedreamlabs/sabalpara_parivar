@@ -130,6 +130,7 @@ export 'package:sabalpara_family/features/setting/family_members/model/family_me
 export 'package:sabalpara_family/features/setting/gallery/cubit/gallery_cubit.dart';
 export 'package:sabalpara_family/features/setting/gallery/gallery_detail/cubit/gallery_detail_cubit.dart';
 export 'package:sabalpara_family/features/setting/gallery/gallery_detail/gallery_detail_screen.dart';
+export 'package:sabalpara_family/features/setting/gallery/gallery_detail/gallery_image_preview_screen.dart';
 export 'package:sabalpara_family/features/setting/gallery/gallery_screen.dart';
 export 'package:sabalpara_family/features/setting/instructions/cubit/instructions_cubit.dart';
 export 'package:sabalpara_family/features/setting/instructions/instructions_screen.dart';

@@ -145,6 +145,13 @@ class RouteService {
           settings: settings,
         );
 
+      /// Gallery Image Preview
+      case GalleryImagePreviewScreen.routeName:
+        return MaterialPageRoute(
+          builder: GalleryImagePreviewScreen.builder,
+          settings: settings,
+        );
+
       /// Instructions
       case InstructionsScreen.routeName:
         return MaterialPageRoute(

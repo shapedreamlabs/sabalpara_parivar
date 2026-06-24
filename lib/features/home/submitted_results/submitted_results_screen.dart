@@ -1,4 +1,3 @@
-import 'package:sabalpara_family/features/home/widget/results_widget.dart';
 import 'package:sabalpara_family/sabalpara_family.dart';
 
 class SubmittedResultsScreen extends StatelessWidget {

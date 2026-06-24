@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:sabalpara_family/sabalpara_family.dart';
 
 void showCustomToast(String msg, {bool error = false}) {
@@ -5,7 +7,11 @@ void showCustomToast(String msg, {bool error = false}) {
 
   Widget widget() {
     return Container(
-      margin: .symmetric(horizontal: 16.w),
+      margin: EdgeInsets.only(
+        left: 16.w,
+        right: 16.w,
+        top: Platform.isAndroid ? 0 : 0,
+      ),
       padding: .all(14.w),
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -71,6 +77,9 @@ void showCustomToast(String msg, {bool error = false}) {
     duration: const Duration(seconds: 3),
     handleTouch: true,
     dismissOtherToast: true,
-    position: .top,
+    position: ToastPosition(
+      align: Alignment.topCenter,
+      offset: Platform.isAndroid ? 40 : 70,
+    ),
   );
 }

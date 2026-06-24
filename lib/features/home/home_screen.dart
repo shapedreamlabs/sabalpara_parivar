@@ -1,6 +1,3 @@
-import 'package:sabalpara_family/features/home/widget/banners_widget.dart';
-import 'package:sabalpara_family/features/home/widget/community_overview_widget.dart';
-import 'package:sabalpara_family/features/home/widget/results_widget.dart';
 import 'package:sabalpara_family/sabalpara_family.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,25 +18,28 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: AppColors.lightStatusBar,
-          child: CommonBgWidget(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              extendBody: true,
-              appBar: CustomAppBar(
-                flexibleSpaceWidget: _UserWidget(),
-                backArrow: false,
-                bottomSize: 20.h,
-                systemUiStyle: AppColors.lightStatusBar,
-                // titleWidget: _UserWidget(),
-              ),
-              body: CustomSingleChildScroll(
-                child: Column(
-                  spacing: 20.h,
-                  children: [
-                    BannersWidget(),
-                    CommunityOverviewWidget(),
-                    ResultsWidget(),
-                  ],
+          child: SafeArea(
+            top: false,
+            child: CommonBgWidget(
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                extendBody: true,
+                appBar: CustomAppBar(
+                  flexibleSpaceWidget: _UserWidget(),
+                  backArrow: false,
+                  bottomSize: 20.h,
+                  systemUiStyle: AppColors.lightStatusBar,
+                ),
+                body: CustomSingleChildScroll(
+                  child: Column(
+                    spacing: 20.h,
+                    children: [
+                      BannersWidget(),
+                      CommunityOverviewWidget(),
+                      ResultsWidget(),
+                      10.h.spaceVertical,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -86,7 +86,7 @@ class _UserWidget extends StatelessWidget {
                 Text(
                   greetingText,
                   style: styleW400S16.copyWith(
-                    color: AppColors.text.withValues(alpha: 0.8), 
+                    color: AppColors.text.withValues(alpha: 0.8),
                   ),
                 ),
                 Text(userModel?.name ?? "-", style: styleW600S18),

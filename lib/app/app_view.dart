@@ -23,6 +23,9 @@ class AppView extends StatelessWidget {
             child: BlocBuilder<AppCubit, AppState>(
               builder: (context, state) {
                 return OKToast(
+                  position: ToastPosition.top,
+                  textPadding: EdgeInsets.zero,
+                  movingOnWindowChange: false,
                   child: MaterialApp(
                     
                     localizationsDelegates: [

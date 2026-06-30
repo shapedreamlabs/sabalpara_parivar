@@ -20,6 +20,14 @@ class ErrorHandler {
       message = fallback.isEmpty ? 'Unexpected error occurred' : fallback;
     }
 
+    if (!(e is AppException || e is DioException)) {
+      CrashlyticsService.recordError(
+        CrashArea.businessLogic,
+        e,
+        StackTrace.current,
+      );
+    }
+
     if (showToast) {
       showErrorToast(message);
     }

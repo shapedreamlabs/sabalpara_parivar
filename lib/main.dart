@@ -20,6 +20,8 @@ void main() {
           options: DefaultFirebaseOptions.currentPlatform,
         );
 
+        await CrashlyticsService.initialize();
+
         /// 🔐 App Preferences
         await PrefService.init();
 
@@ -34,8 +36,14 @@ void main() {
         SystemChrome.setSystemUIOverlayStyle(
           SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white),
         );
-      } catch (e) {
+      } catch (e, stack) {
         debugPrint('❌ App bootstrap error: $e');
+        await CrashlyticsService.recordError(
+          CrashArea.firebase,
+          e,
+          stack,
+          fatal: true,
+        );
       }
 
       runApp(const AppView());

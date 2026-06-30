@@ -53,6 +53,12 @@ class MediaPicker {
 
       return pickedFile;
     } catch (e, stack) {
+      CrashlyticsService.recordError(
+        CrashArea.mediaPicker,
+        e,
+        stack,
+        info: {'source': 'file_picker'},
+      );
       showCatchToast(e, stack);
       return null;
     }
@@ -71,6 +77,12 @@ class MediaPicker {
 
       return pickedFile;
     } catch (e, stack) {
+      CrashlyticsService.recordError(
+        CrashArea.mediaPicker,
+        e,
+        stack,
+        info: {'source': 'camera_gallery'},
+      );
       showCatchToast(e, stack);
       return null;
     }

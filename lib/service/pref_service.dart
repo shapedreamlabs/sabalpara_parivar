@@ -1,25 +1,41 @@
 import 'package:sabalpara_family/sabalpara_family.dart';
+import 'package:sabalpara_family/sabalpara_family_extra.dart';
 
 class PrefService {
   static late SharedPreferences prefs;
 
   static Future<void> init() async {
-    prefs = await SharedPreferences.getInstance();
+    try {
+      prefs = await SharedPreferences.getInstance();
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(CrashArea.database, e, stack);
+      rethrow;
+    }
   }
 
   static Future<bool> set(String key, dynamic value) async {
-    if (value is int) {
-      return prefs.setInt(key, value);
-    } else if (value is double) {
-      return prefs.setDouble(key, value);
-    } else if (value is String) {
-      return prefs.setString(key, value);
-    } else if (value is bool) {
-      return prefs.setBool(key, value);
-    } else if (value is List<String>) {
-      return prefs.setStringList(key, value);
+    try {
+      if (value is int) {
+        return prefs.setInt(key, value);
+      } else if (value is double) {
+        return prefs.setDouble(key, value);
+      } else if (value is String) {
+        return prefs.setString(key, value);
+      } else if (value is bool) {
+        return prefs.setBool(key, value);
+      } else if (value is List<String>) {
+        return prefs.setStringList(key, value);
+      }
+      return false;
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(
+        CrashArea.database,
+        e,
+        stack,
+        info: {'key': key},
+      );
+      rethrow;
     }
-    return false;
   }
 
   static int getInt(String key) {
@@ -43,10 +59,25 @@ class PrefService {
   }
 
   static Future<bool> removeKey(String key) async {
-    return await prefs.remove(key);
+    try {
+      return await prefs.remove(key);
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(
+        CrashArea.database,
+        e,
+        stack,
+        info: {'key': key},
+      );
+      rethrow;
+    }
   }
 
   static Future<bool> clear() async {
-    return await prefs.clear();
+    try {
+      return await prefs.clear();
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(CrashArea.database, e, stack);
+      rethrow;
+    }
   }
 }

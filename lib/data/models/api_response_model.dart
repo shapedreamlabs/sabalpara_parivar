@@ -26,6 +26,15 @@ class ApiResponseModel<T> {
       debugPrint('Raw data type: ${rawData.runtimeType}');
       debugPrint('Error: $e');
       debugPrint('Stack: $stackTrace');
+      CrashlyticsService.recordError(
+        CrashArea.businessLogic,
+        e,
+        stackTrace,
+        info: {
+          'model_type': T.toString(),
+          'status': '${json["status"]}',
+        },
+      );
       rethrow;
     }
 

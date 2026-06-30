@@ -31,6 +31,7 @@ class ApiService {
     _dio!.interceptors.add(AuthInterceptor(_dio!));
     _dio!.interceptors.add(RetryInterceptor(_dio!));
     _dio!.interceptors.add(LoggerInterceptor());
+    _dio!.interceptors.add(CrashlyticsInterceptor());
 
     return _dio!;
   }
@@ -102,6 +103,14 @@ class ApiService {
       }
     } on DioException {
       rethrow;
+    } catch (e, stack) {
+      CrashlyticsService.recordError(
+        CrashArea.api,
+        e,
+        stack,
+        info: {'path': path, 'method': type.name},
+      );
+      rethrow;
     }
   }
 
@@ -123,12 +132,22 @@ class ApiService {
       for (final entry in files.entries) {
         final multipartFiles = <MultipartFile>[];
         for (final file in entry.value) {
-          multipartFiles.add(
-            await MultipartFile.fromFile(
-              file.path,
-              filename: file.path.split('/').last,
-            ),
-          );
+          try {
+            multipartFiles.add(
+              await MultipartFile.fromFile(
+                file.path,
+                filename: file.path.split('/').last,
+              ),
+            );
+          } catch (e, stack) {
+            await CrashlyticsService.recordError(
+              CrashArea.fileTransfer,
+              e,
+              stack,
+              info: {'field': entry.key, 'file_path': file.path},
+            );
+            rethrow;
+          }
         }
         payload[entry.key] = multipartFiles.length == 1
             ? multipartFiles.first

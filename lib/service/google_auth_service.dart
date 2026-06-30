@@ -1,4 +1,5 @@
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sabalpara_family/sabalpara_family.dart';
 import 'package:sabalpara_family/sabalpara_family_extra.dart';
 
 class GoogleSignInData {
@@ -80,7 +81,13 @@ class GoogleAuthService {
       );
       await file.writeAsBytes(bytes);
       return file;
-    } catch (_) {
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(
+        CrashArea.fileTransfer,
+        e,
+        stack,
+        info: {'source': 'google_avatar'},
+      );
       return null;
     }
   }

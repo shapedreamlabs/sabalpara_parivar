@@ -6,32 +6,42 @@ class ImageDownloadService {
   static const _albumName = 'Sabalpara Family';
 
   static Future<void> saveNetworkImage(String? imageUrl) async {
-    final url = _resolveImageUrl(imageUrl);
-    if (url.isEmpty) {
-      throw AppException(message: 'Image not available');
-    }
+    try {
+      final url = _resolveImageUrl(imageUrl);
+      if (url.isEmpty) {
+        throw AppException(message: 'Image not available');
+      }
 
-    if (!await Gal.hasAccess(toAlbum: true)) {
-      await Gal.requestAccess(toAlbum: true);
-    }
+      if (!await Gal.hasAccess(toAlbum: true)) {
+        await Gal.requestAccess(toAlbum: true);
+      }
 
-    if (!await Gal.hasAccess(toAlbum: true)) {
-      throw AppException(message: 'Photo permission denied');
-    }
+      if (!await Gal.hasAccess(toAlbum: true)) {
+        throw AppException(message: 'Photo permission denied');
+      }
 
-    final tempDir = await getTemporaryDirectory();
-    final extension = _fileExtensionFromUrl(url);
-    final filePath =
-        '${tempDir.path}/sabalpara_${DateTime.now().millisecondsSinceEpoch}$extension';
+      final tempDir = await getTemporaryDirectory();
+      final extension = _fileExtensionFromUrl(url);
+      final filePath =
+          '${tempDir.path}/sabalpara_${DateTime.now().millisecondsSinceEpoch}$extension';
 
-    final dio = Dio();
-    await dio.download(url, filePath);
+      final dio = Dio();
+      await dio.download(url, filePath);
 
-    await Gal.putImage(filePath, album: _albumName);
+      await Gal.putImage(filePath, album: _albumName);
 
-    final tempFile = File(filePath);
-    if (tempFile.existsSync()) {
-      await tempFile.delete();
+      final tempFile = File(filePath);
+      if (tempFile.existsSync()) {
+        await tempFile.delete();
+      }
+    } catch (e, stack) {
+      await CrashlyticsService.recordError(
+        CrashArea.fileTransfer,
+        e,
+        stack,
+        info: {'image_url': imageUrl ?? ''},
+      );
+      rethrow;
     }
   }
 

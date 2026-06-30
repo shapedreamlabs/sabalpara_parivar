@@ -147,32 +147,43 @@ Future<File?> compressImage(File? file, {double? requestedSize}) async {
   if (file == null) {
     return null;
   }
-  Directory directory = await getTemporaryDirectory();
-  double requiredSize = requestedSize ?? (1024 * 1024 * 2);
-  int fileSize = file.lengthSync();
-  int quality = ((100 * requiredSize) / fileSize).round();
-  var byte = await FlutterImageCompress.compressWithList(
-    file.absolute.readAsBytesSync(),
-    quality: quality > 100 ? 95 : quality,
-    rotate: 0,
-  );
 
-  debugPrint(file.lengthSync().toString());
+  try {
+    Directory directory = await getTemporaryDirectory();
+    double requiredSize = requestedSize ?? (1024 * 1024 * 2);
+    int fileSize = file.lengthSync();
+    int quality = ((100 * requiredSize) / fileSize).round();
+    var byte = await FlutterImageCompress.compressWithList(
+      file.absolute.readAsBytesSync(),
+      quality: quality > 100 ? 95 : quality,
+      rotate: 0,
+    );
 
-  File result = File(
-    "${directory.path}/${DateTime.now().microsecondsSinceEpoch}.jpg",
-  );
+    debugPrint(file.lengthSync().toString());
 
-  if (result.existsSync()) {
-    await result.delete();
+    File result = File(
+      "${directory.path}/${DateTime.now().microsecondsSinceEpoch}.jpg",
+    );
+
+    if (result.existsSync()) {
+      await result.delete();
+    }
+    result.writeAsBytesSync(byte);
+    debugPrint(result.lengthSync().toString());
+
+    final size = result.lengthSync();
+    debugPrint(size.toString());
+
+    return result;
+  } catch (e, stack) {
+    await CrashlyticsService.recordError(
+      CrashArea.mediaPicker,
+      e,
+      stack,
+      info: {'source': 'compress_image'},
+    );
+    return null;
   }
-  result.writeAsBytesSync(byte);
-  debugPrint(result.lengthSync().toString());
-
-  final size = result.lengthSync();
-  debugPrint(size.toString());
-
-  return result;
 }
 
 String get greetingText {

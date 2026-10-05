@@ -612,4 +612,27 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get photoPermissionDenied => 'Photo permission denied';
+
+  @override
+  String get yes => 'હા';
+
+  @override
+  String get no => 'ના';
+
+  @override
+  String get ok => 'ઠીક છે';
+
+  @override
+  String get newVersionAvailable => 'નવું વર્ઝન ઉપલબ્ધ છે';
+
+  @override
+  String get updatePopupContent =>
+      'તમારી પાસે એપનું જૂનું વર્ઝન છે. નવી સુવિધાઓ અને વધુ સારા અનુભવ માટે કૃપા કરીને અપડેટ કરો.';
+
+  @override
+  String get maintenanceInProgress => 'જાળવણી ચાલુ છે';
+
+  @override
+  String get maintenancePopupContent =>
+      'તમારો અનુભવ સુધારવા માટે અમે હાલમાં જાળવણી કરી રહ્યા છીએ.\nકૃપા કરીને થોડીવાર પછી ફરી તપાસો.';
 }

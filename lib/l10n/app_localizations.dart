@@ -1269,6 +1269,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Photo permission denied'**
   String get photoPermissionDenied;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @newVersionAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'New version available'**
+  String get newVersionAvailable;
+
+  /// No description provided for @updatePopupContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Looks like you have an older version of the app. Please update to get latest features and best experience.'**
+  String get updatePopupContent;
+
+  /// No description provided for @maintenanceInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance in Progress'**
+  String get maintenanceInProgress;
+
+  /// No description provided for @maintenancePopupContent.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re currently performing scheduled maintenance to improve your experience.\nPlease check back in a few minutes.'**
+  String get maintenancePopupContent;
 }
 
 class _AppLocalizationsDelegate

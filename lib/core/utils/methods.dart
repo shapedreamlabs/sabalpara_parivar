@@ -6,9 +6,7 @@ void hideKeyboard({BuildContext? context}) {
   if (context == null) {
     return;
   }
-  if (FocusScope.of(context).hasFocus) {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
+  FocusManager.instance.primaryFocus?.unfocus();
 }
 
 bool isKeyboardOpen(BuildContext context) {

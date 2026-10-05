@@ -611,4 +611,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get photoPermissionDenied => 'Photo permission denied';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get newVersionAvailable => 'New version available';
+
+  @override
+  String get updatePopupContent =>
+      'Looks like you have an older version of the app. Please update to get latest features and best experience.';
+
+  @override
+  String get maintenanceInProgress => 'Maintenance in Progress';
+
+  @override
+  String get maintenancePopupContent =>
+      'We\'re currently performing scheduled maintenance to improve your experience.\nPlease check back in a few minutes.';
 }

@@ -52,6 +52,7 @@ class UploadResultScreen extends StatelessWidget {
                       header: l10n?.childName,
                       hintText: l10n?.enterChildFullName,
                       error: state.childNameError,
+                      textInputAction: TextInputAction.done,
                     ),
 
                     Column(
@@ -91,6 +92,7 @@ class UploadResultScreen extends StatelessWidget {
                       hintText: l10n?.enterPercentage,
                       error: state.percentageError,
                       textInputType: TextInputType.number,
+                      textInputAction: TextInputAction.done,
                       onChanged: (value) =>
                           cubit.onChangePercentage(context, value),
                       inputFormatters: [

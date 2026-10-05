@@ -17,7 +17,8 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppCubit, AppState>(
+    return AppUpGrader(
+      child: BlocBuilder<AppCubit, AppState>(
       builder: (context, appState) {
         return BlocBuilder<DashboardCubit, DashboardState>(
           builder: (context, state) {
@@ -66,6 +67,7 @@ class DashboardScreen extends StatelessWidget {
           },
         );
       },
+      ),
     );
   }
 }

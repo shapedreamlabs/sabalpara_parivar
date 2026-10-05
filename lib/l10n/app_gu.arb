@@ -194,5 +194,12 @@
   "download": "Download",
   "imageSavedToGallery": "Image saved to gallery",
   "imageDownloadFailed": "Could not download image",
-  "photoPermissionDenied": "Photo permission denied"
+  "photoPermissionDenied": "Photo permission denied",
+  "yes": "હા",
+  "no": "ના",
+  "ok": "ઠીક છે",
+  "newVersionAvailable": "નવું વર્ઝન ઉપલબ્ધ છે",
+  "updatePopupContent": "તમારી પાસે એપનું જૂનું વર્ઝન છે. નવી સુવિધાઓ અને વધુ સારા અનુભવ માટે કૃપા કરીને અપડેટ કરો.",
+  "maintenanceInProgress": "જાળવણી ચાલુ છે",
+  "maintenancePopupContent": "તમારો અનુભવ સુધારવા માટે અમે હાલમાં જાળવણી કરી રહ્યા છીએ.\nકૃપા કરીને થોડીવાર પછી ફરી તપાસો."
 }

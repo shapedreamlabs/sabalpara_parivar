@@ -38,6 +38,7 @@ void main() {
         );
       } catch (e, stack) {
         debugPrint('❌ App bootstrap error: $e');
+
         await CrashlyticsService.recordError(
           CrashArea.firebase,
           e,

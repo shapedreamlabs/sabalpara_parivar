@@ -136,6 +136,8 @@ class UploadResultCubit extends Cubit<UploadResultState> {
   }
 
   Future<void> onTapUpload(BuildContext context) async {
+    hideKeyboard(context: context);
+
     if (!validation(context)) {
       return;
     }
@@ -145,8 +147,6 @@ class UploadResultCubit extends Cubit<UploadResultState> {
     if (file == null || standardId.isEmpty) {
       return;
     }
-
-    hideKeyboard(context: context);
     refresh(state.copyWith(loader: true));
 
     try {

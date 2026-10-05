@@ -16,7 +16,8 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<SignInCubit, SignInState>(
+    return AppUpGrader(
+      child: BlocBuilder<SignInCubit, SignInState>(
       builder: (context, state) {
         final cubit = context.read<SignInCubit>();
         return PopScope(
@@ -229,6 +230,7 @@ class SignInScreen extends StatelessWidget {
           ),
         );
       },
+      ),
     );
   }
 }

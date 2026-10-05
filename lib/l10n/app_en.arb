@@ -193,5 +193,12 @@
   "download": "Download",
   "imageSavedToGallery": "Image saved to gallery",
   "imageDownloadFailed": "Could not download image",
-  "photoPermissionDenied": "Photo permission denied"
+  "photoPermissionDenied": "Photo permission denied",
+  "yes": "Yes",
+  "no": "No",
+  "ok": "OK",
+  "newVersionAvailable": "New version available",
+  "updatePopupContent": "Looks like you have an older version of the app. Please update to get latest features and best experience.",
+  "maintenanceInProgress": "Maintenance in Progress",
+  "maintenancePopupContent": "We're currently performing scheduled maintenance to improve your experience.\nPlease check back in a few minutes."
 }

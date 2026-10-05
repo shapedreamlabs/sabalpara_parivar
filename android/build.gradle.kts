@@ -19,6 +19,19 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// file_picker skips the Kotlin plugin on AGP 9 and expects built-in Kotlin.
+// This project opts out of built-in Kotlin, so apply the plugin for that module.
+subprojects {
+    plugins.withId("com.android.library") {
+        if (name == "file_picker" && !plugins.hasPlugin("org.jetbrains.kotlin.android")) {
+            pluginManager.apply("org.jetbrains.kotlin.android")
+            extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension>("kotlin") {
+                compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            }
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }

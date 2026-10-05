@@ -44,7 +44,7 @@ android {
         create("release") {
             keyAlias = keystoreProperties["keyAlias"] as String?
             keyPassword = keystoreProperties["keyPassword"] as String?
-            storeFile = rootProject.file(keystoreProperties["storeFile"] as String?)
+            storeFile = (keystoreProperties["storeFile"] as String?)?.let { rootProject.file(it) }
             storePassword = keystoreProperties["storePassword"] as String?
         }
     }
@@ -70,8 +70,5 @@ flutter {
 
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
-    implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.firebase:firebase-crashlytics")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 }
